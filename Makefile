@@ -19,9 +19,8 @@ HEADERS	:= -I ./include -I $(LIBMLX)/include
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -mmacosx-version-min=12.6 $(LIBFT)
 SRCS	:= main.c
 OBJS	:= $(SRCS:.c=.o)
-GIT     := 	if [ -d $(LIBMLX) ]; \
-			then git -C $(LIBMLX) pull; \
-			else git clone https://github.com/Zzzhenya/MLX42.git $(LIBMLX); \
+GIT     := 	if !( [ -d $(LIBMLX) ]); \
+			then git clone https://github.com/Zzzhenya/MLX42.git $(LIBMLX); \
 			fi
 
 all: libmlx libft $(NAME)
