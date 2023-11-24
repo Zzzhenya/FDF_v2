@@ -17,7 +17,7 @@ LIBFT	:= libft.a
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT)
-SRCS	:= main.c
+SRCS	:= main.c debug_utils.c
 OBJS	:= $(SRCS:.c=.o)
 GIT     := 	if !( [ -d $(LIBMLX) ]); \
 			then git clone https://github.com/Zzzhenya/MLX42.git $(LIBMLX); \
