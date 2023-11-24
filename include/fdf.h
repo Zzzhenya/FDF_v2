@@ -30,4 +30,11 @@ typedef struct	s_screen
 	t_vert	*iso;
 }				t_screen;
 
+/* debug_utils.c */
+
+void free_coord(t_cord	*cord);
+void free_vert(t_vert *iso);
+void free_screen(t_screen *scrn);
+void print_screen_details(t_screen *scrn);
+
 #endif
