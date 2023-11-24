@@ -28,16 +28,17 @@ void free_vert(t_vert *iso)
 
 void free_screen(t_screen *scrn)
 {
+	/*
 	if (scrn->cord)
 	{
 		//free_coord(scrn->cord);
-		scrn->cord = NULL;
+		//scrn->cord = NULL;
 	}
 	if (scrn->iso)
 	{
 		//free_vert(scrn->iso);
-		scrn->iso = NULL;
-	}
+		//scrn->iso = NULL;
+	}*/
 	scrn->a = 0;
 	scrn->b = 0;
 	scrn->x_max = 0;
