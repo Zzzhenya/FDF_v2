@@ -16,17 +16,18 @@ LIBMLX	:= ./lib/MLX42
 LIBFT	:= libft.a
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -mmacosx-version-min=12.6 $(LIBFT)
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT)
 SRCS	:= main.c
 OBJS	:= $(SRCS:.c=.o)
 GIT     := 	if !( [ -d $(LIBMLX) ]); \
 			then git clone https://github.com/Zzzhenya/MLX42.git $(LIBMLX); \
 			fi
+# -mmacosx-version-min=12.6
 
 all: libmlx libft $(NAME)
 
 libmlx:
-	@echo "...Checking for MLX42 repo updates."
+	@echo "...Checking for MLX42 repo."
 	@$(GIT)
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
