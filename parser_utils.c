@@ -64,7 +64,11 @@ void	check_for_shape(int fd, t_screen *map)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+		{
+			close(fd);
+			free (map);
+			ft_errexit("gnl() error.");
+		}
 		arr = ft_split(line, ' ');
 		cols = 0;
 		while (arr[cols] != (void *)0)
