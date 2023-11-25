@@ -7,22 +7,6 @@ void	free_stuff(t_screen *scrn)
 	clear_2d_cords(&scrn->map);
 }
 
-static void 	clear_3d_cords(t_cord *cord, t_obj  *map)
-{
-	int i;
-
-	i = 0;
-	while (i < map->x_max * map->y_max)
-	{
-		cord[i].x = 0;
-		cord[i].z = 0;
-		cord[i].y = 0;
-		i ++;
-	}
-	free(cord);
-	cord = NULL;
-	ft_printf("...Grid cleared.\nShutting down...\n");
-}
 
 static void clear_2d_cords(t_obj *map)
 {
@@ -39,6 +23,26 @@ static void clear_2d_cords(t_obj *map)
 	map->iso = NULL;
 }
 */
+
+void 	clear_3d_cords(t_screen  *map)
+{
+	int 	i;
+	t_cord *cord;
+
+	i = 0;
+	cord = map->cord;
+	while (i < map->x_max * map->y_max)
+	{
+		cord[i].x = 0;
+		cord[i].z = 0;
+		cord[i].y = 0;
+		i ++;
+	}
+	free(cord);
+	cord = NULL;
+	ft_printf("...Grid cleared.\n");
+}
+
 void	print_t_cord(t_screen *map)
 {
 	int i;

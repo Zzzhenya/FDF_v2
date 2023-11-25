@@ -22,7 +22,7 @@ int	store_3d_cords(t_screen *map, int fd, int i)
 			(*map).cord[i].y = rows;
 			(*map).cord[i].x = cols;
 			(*map).cord[i].z = ft_atoi(arr[cols]);
-			free(arr[cols]);
+			//free(arr[cols]);
 			cols ++;
 			i ++;
 		}
