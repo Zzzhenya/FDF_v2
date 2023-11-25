@@ -138,12 +138,14 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 			{
 				line = get_next_line(fd);
 				if (!line)
-					break;
+				{
+					close(fd);
+					return (-1);
+				}
 				free (line);
 				line = NULL;
 			}
-			close(fd);
-			return (-1);
+			
 		}
 		free (line);
 		line = NULL;
