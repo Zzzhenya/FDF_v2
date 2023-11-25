@@ -104,43 +104,44 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 {
 	char	*line;
 	char	**arr;
+	int     col;
+	int i;
 
- 
+	i = 0;
 	ft_printf("check_for_shape: %s\n", str);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
+		{
+			if (i == 0)
+				return (-1);
 			break;
-		ft_printf("line: %s\n", line);
+		}
 		arr = ft_split(line, ' ');
 		print_arr(arr);
+		col = 0;
+		while (arr[col])
+		{
+			if (i == 0)
+				map->x_max++;
+			col ++;
+		}
+		if (col < map->x_max || col > map->x_max)
+		{
+			free (line);
+			line = NULL;
+			free_arr(arr);
+			arr = NULL;
+			return (-1);
+		}
 		free (line);
 		line = NULL;
-		ft_printf("map->x_max: %s\n", map->x_max);
 		free_arr(arr);
 		arr = NULL;
+		i ++;
 	}
-	/*
-	line = get_next_line(fd);
-	ft_printf("line: %s\n", line);
-	arr = ft_split(line, ' ');
-	print_arr(arr);
-	free (line);
-	line = NULL;
-	ft_printf("map->x_max: %s\n", map->x_max);
-	free_arr(arr);
-	arr = NULL;
-	line = get_next_line(fd);
-	ft_printf("line: %s\n", line);
-	arr = ft_split(line, ' ');
-	print_arr(arr);
-	free (line);
-	line = NULL;
-	ft_printf("map->x_max: %s\n", map->x_max);
-	free_arr(arr);
-	arr = NULL;
-	*/
+	map->y_max = i;
 	close(fd);
 	return (1);
 }
