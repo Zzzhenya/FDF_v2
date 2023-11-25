@@ -21,13 +21,14 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_printf("	Usage: ./fdf map.fdf\n");
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	ft_printf("file: %s\n", argv[1]);
 	scrn = init_screen(scrn);
 	if (!scrn)
 		ft_errexit("t_screen init error");
 	print_screen_details(scrn);
+	parse_and_store(scrn, argv[1]);
 	free_screen(scrn);
-	return(0);
+	return (EXIT_SUCCESS);
 }

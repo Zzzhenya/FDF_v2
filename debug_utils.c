@@ -1,5 +1,71 @@
 #include "fdf.h"
 #include <stdio.h>
+/*
+void	free_stuff(t_screen *scrn)
+{
+	clear_3d_cords(scrn->map.cord, &scrn->map);
+	clear_2d_cords(&scrn->map);
+}
+
+static void 	clear_3d_cords(t_cord *cord, t_obj  *map)
+{
+	int i;
+
+	i = 0;
+	while (i < map->x_max * map->y_max)
+	{
+		cord[i].x = 0;
+		cord[i].z = 0;
+		cord[i].y = 0;
+		i ++;
+	}
+	free(cord);
+	cord = NULL;
+	ft_printf("...Grid cleared.\nShutting down...\n");
+}
+
+static void clear_2d_cords(t_obj *map)
+{
+	int i;
+
+	i = 0;
+	while (i < map->x_max * map->y_max)
+	{
+		map->iso[i].x = 0;
+		map->iso[i].y = 0;
+		i ++;
+	}
+	free(map->iso);
+	map->iso = NULL;
+}
+
+void	print_t_cord(t_obj *map)
+{
+	int i;
+
+	i = 0;
+	if (!map->cord)
+		return ;
+	while (i < map->x_max * map->y_max)
+	{
+		ft_printf("%d,(%d,%d,%d)\n", i,
+			map->cord[i].x,
+			map->cord[i].y,
+			map->cord[i].z);
+		i ++;
+	}
+}
+*/
+
+/*Free array when parsing fails*/
+void	free_arr(char **arr, int cols)
+{
+	while (cols > -1)
+	{
+		free(arr[cols]);
+		cols --;
+	}
+}
 
 void free_coord(t_cord	*cord)
 {
