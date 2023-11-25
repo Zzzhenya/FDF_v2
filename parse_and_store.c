@@ -26,7 +26,7 @@ int	store_3d_cords(t_screen *map, int fd, int i)
 			cols ++;
 			i ++;
 		}
-		free_arr(arr, cols-1);
+		free_arr(arr);
 		rows ++;
 	}
 	return (0);
