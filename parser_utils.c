@@ -114,6 +114,25 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 	line = NULL;
 	ft_printf("map->x_max: %s\n", map->x_max);
 	free_arr(arr);
+	arr = NULL;
+	line = get_next_line(fd);
+	ft_printf("line: %s\n", line);
+	arr = ft_split(line, ' ');
+	print_arr(arr);
+	free (line);
+	line = NULL;
+	ft_printf("map->x_max: %s\n", map->x_max);
+	free_arr(arr);
+	arr = NULL;
+	line = get_next_line(fd);
+	ft_printf("line: %s\n", line);
+	arr = ft_split(line, ' ');
+	print_arr(arr);
+	free (line);
+	line = NULL;
+	ft_printf("map->x_max: %s\n", map->x_max);
+	free_arr(arr);
+	arr = NULL;
 	close(fd);
 	return (1);
 }

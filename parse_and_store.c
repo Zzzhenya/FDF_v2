@@ -64,7 +64,7 @@ int parse_and_store(t_screen *scrn, char *name)
 	//fd = open (name, O_RDONLY);
 	//if (fd < 0)
 		//ft_errexit("open() error.");
-		return (0);
+		//return (0);
 	//store_3d_cords(scrn, fd, 0);
 	//print_t_cord(scrn);
 	//close (fd);
