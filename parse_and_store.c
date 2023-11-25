@@ -22,7 +22,7 @@ int	store_3d_cords(t_screen *map, int fd, int i)
 			(*map).cord[i].y = rows;
 			(*map).cord[i].x = cols;
 			(*map).cord[i].z = ft_atoi(arr[cols]);
-			//free(arr[cols]);
+			free(arr[cols]);
 			cols ++;
 			i ++;
 		}
@@ -65,6 +65,7 @@ int parse_and_store(t_screen *scrn, char *name)
 		//ft_errexit("open() error.");
 		return (0);
 	store_3d_cords(scrn, fd, 0);
+	print_t_cord(scrn);
 	close (fd);
 	return (1);
 }

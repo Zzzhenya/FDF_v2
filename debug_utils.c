@@ -38,8 +38,8 @@ static void clear_2d_cords(t_obj *map)
 	free(map->iso);
 	map->iso = NULL;
 }
-
-void	print_t_cord(t_obj *map)
+*/
+void	print_t_cord(t_screen *map)
 {
 	int i;
 
@@ -55,7 +55,7 @@ void	print_t_cord(t_obj *map)
 		i ++;
 	}
 }
-*/
+
 
 /*Free array when parsing fails*/
 void	free_arr(char **arr, int cols)

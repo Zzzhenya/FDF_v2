@@ -39,6 +39,7 @@ void free_vert(t_vert *iso);
 void free_screen(t_screen *scrn);
 void print_screen_details(t_screen *scrn);
 void	free_arr(char **arr, int cols);
+void	print_t_cord(t_screen *map);
 
 
 /* parse_and_store.c */
