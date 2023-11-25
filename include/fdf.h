@@ -5,6 +5,7 @@
 # include "MLX42/MLX42.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdlib.h>
 
 typedef struct s_vert
 {
