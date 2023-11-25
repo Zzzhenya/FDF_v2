@@ -132,10 +132,16 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 		}
 		if (col < map->x_max || col > map->x_max)
 		{
-			free_arr(arr);
+			free_arr (arr);
 			arr = NULL;
-			free (line);
-			line = NULL;
+			while (1)
+			{
+				line = get_next_line(fd);
+				if (!line)
+					break;
+				free (line);
+				line = NULL;
+			}
 			close(fd);
 			return (-1);
 		}
