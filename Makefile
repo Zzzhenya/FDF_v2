@@ -53,6 +53,7 @@ fclean: clean
 	@rm -rf $(LIBMLX)/build
 	@echo "...MLX42 build files cleaned."
 	@$(MAKE) fclean -C ./lib/libft
+	@rm ./include/libft.h
 	@rm -f libft.a
 
 re: clean all
