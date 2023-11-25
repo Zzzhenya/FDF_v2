@@ -105,7 +105,23 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 	char	*line;
 	char	**arr;
 
+ 
 	ft_printf("check_for_shape: %s\n", str);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		ft_printf("line: %s\n", line);
+		arr = ft_split(line, ' ');
+		print_arr(arr);
+		free (line);
+		line = NULL;
+		ft_printf("map->x_max: %s\n", map->x_max);
+		free_arr(arr);
+		arr = NULL;
+	}
+	/*
 	line = get_next_line(fd);
 	ft_printf("line: %s\n", line);
 	arr = ft_split(line, ' ');
@@ -124,15 +140,7 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 	ft_printf("map->x_max: %s\n", map->x_max);
 	free_arr(arr);
 	arr = NULL;
-	line = get_next_line(fd);
-	ft_printf("line: %s\n", line);
-	arr = ft_split(line, ' ');
-	print_arr(arr);
-	free (line);
-	line = NULL;
-	ft_printf("map->x_max: %s\n", map->x_max);
-	free_arr(arr);
-	arr = NULL;
+	*/
 	close(fd);
 	return (1);
 }
