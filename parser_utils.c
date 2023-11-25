@@ -115,7 +115,10 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 		if (!line)
 		{
 			if (i == 0)
+			{
+				close(fd);
 				return (-1);
+			}
 			break;
 		}
 		arr = ft_split(line, ' ');
@@ -129,16 +132,11 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 		}
 		if (col < map->x_max || col > map->x_max)
 		{
-			while (1)
-			{
-				line = get_next_line(fd);
-				if (!line)
-					break;
-				free (line);
-				line = NULL;
-			}
 			free_arr(arr);
 			arr = NULL;
+			free (line);
+			line = NULL;
+			close(fd);
 			return (-1);
 		}
 		free (line);
