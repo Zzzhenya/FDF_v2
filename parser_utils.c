@@ -49,18 +49,18 @@ static void check_first_line (int fd, t_screen *map)
 	close(fd);
 }
 */
-/* Parse through the rest of the map store height of map 
-int	check_for_shape(int fd, t_screen *map, char *str)
+/* Parse through the rest of the map store height of map */
+void	check_for_shape(int fd, t_screen *map)
 {
 	char	*line;
 	char	**arr;
 	int 	cols;
-	int    i;
+	int    	rows;
 
 
-	ft_printf("check_for_shape: %s\n", str);
-	i = 0;
-	while (1)
+	ft_printf("check_for_shape");
+	rows = 0;
+	while (rows < map->y_max)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -70,23 +70,18 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 		while (arr[cols] != (void *)0)
 		{
 			cols ++;
-			if (i == 0)
-				map->x_max = cols;
 		}
 		if (cols < (*map).x_max || cols > (*map).x_max)
 		{
-			break;
+			close(fd);
+			free (map);
+			ft_errexit("Map is not a rectangle.");
 		}
 		free (line);
-		free_arr (arr, cols);
-		(*map).y_max ++;
+		free_arr (arr);
 	}
 	ft_printf("cols :%d\nrows :%d\n", (*map).x_max, (*map).y_max);
-	
-	close(fd);
-	ft_printf("%s\n", str);
-	return (1);
-}*/
+}
 
 void print_arr(char **arr)
 {
@@ -99,52 +94,6 @@ void print_arr(char **arr)
 		i ++;
 	}
 
-}
-
-int	check_for_shape(int fd, t_screen *map, char *str)
-{
-	char	*line;
-	char	**arr;
-	int     col;
-	int i;
-
-	i = 0;
-	ft_printf("check_for_shape: %s\n", str);
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-		{
-			map->y_max = i;
-			close(fd);
-			if (i == 0)
-				return (-1);
-			return (1);
-		}
-		arr = ft_split(line, ' ');
-		print_arr(arr);
-		col = 0;
-		while (arr[col])
-		{
-			if (i == 0)
-				map->x_max++;
-			col ++;
-		}
-		if (col < map->x_max || col > map->x_max)
-		{
-			free_arr (arr);
-			arr = NULL;
-			free (line);
-			line = NULL;
-			close(fd);
-			ft_errexit("Not a rectangle");
-		}
-		free (line);
-		line = NULL;
-		free_arr(arr);
-		arr = NULL;
-		i ++;
-	}
 }
 
 void get_map_dims(int fd, t_screen *scrn, int i)
@@ -173,6 +122,4 @@ void get_map_dims(int fd, t_screen *scrn, int i)
 		line = get_next_line(fd);
 	}
 	scrn->y_max = i;
-	//free (line);
-	//free (arr);
 }
