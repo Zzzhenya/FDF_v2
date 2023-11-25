@@ -51,5 +51,6 @@ int	store_3d_cords(t_screen *map, int fd, int i);
 /* parser_utils.c */
 int	ft_strstr(const char *haystack, const char *needle);
 int	check_for_shape(int fd, t_screen *map, char *str);
+void get_map_dims(int fd, t_screen *scrn, int i);
 
 #endif

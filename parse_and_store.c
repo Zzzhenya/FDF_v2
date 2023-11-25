@@ -43,8 +43,14 @@ int ft_parse (char *str, t_screen *scrn)
 	if (fd < 0)
 		//ft_errexit("open() error.");
 		return (0);
-	if (check_for_shape(fd, scrn, str) < 0)
+	get_map_dims(fd, scrn, 0);
+	close (fd);
+	fd = open (str, O_RDONLY);
+	if (fd < 0)
+		//ft_errexit("open() error.");
 		return (0);
+	//if (check_for_shape(fd, scrn, str) < 0)
+	//	return (0);
 		//ft_errexit("Map is not a rectangle.");
 	// check for numeric values, NULL, INT MAX and INT MIN
 	close (fd);

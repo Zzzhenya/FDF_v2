@@ -146,3 +146,33 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 		i ++;
 	}
 }
+
+void get_map_dims(int fd, t_screen *scrn, int i)
+{
+	char	*line;
+	char	**arr;
+
+	ft_printf("check_for_dims:");
+	line = get_next_line(fd);
+	if (!line)
+	{
+		close(fd);
+		free (scrn);
+		ft_errexit("Empty map");
+	}
+	arr = ft_split(line, ' ');
+	while (arr[i])
+		i ++;
+	scrn->x_max = i;
+	free_arr(arr);
+	i = 0;
+	while (line)
+	{
+		free (line);
+		i ++;
+		line = get_next_line(fd);
+	}
+	scrn->y_max = i;
+	//free (line);
+	//free (arr);
+}
