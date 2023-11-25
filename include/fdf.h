@@ -25,7 +25,7 @@ typedef struct	s_screen
 	int 	x_max;
 	int 	y_max;
 	int 	z_max;
-	int  	x_min;
+	int  	z_min;
 	float  		a;
 	float 		b;
 	t_cord	*cord;
@@ -34,11 +34,11 @@ typedef struct	s_screen
 
 /* debug_utils.c */
 
-void free_coord(t_cord	*cord);
-void free_vert(t_vert *iso);
-void free_screen(t_screen *scrn);
-void print_screen_details(t_screen *scrn);
-void	free_arr(char **arr, int cols);
+void	free_coord(t_cord	*cord);
+void	free_vert(t_vert *iso);
+void	free_screen(t_screen *scrn);
+void	print_screen_details(t_screen *scrn);
+void	free_arr(char **arr);
 void	print_t_cord(t_screen *map);
 void 	clear_3d_cords(t_screen  *map);
 

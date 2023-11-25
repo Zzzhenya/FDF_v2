@@ -48,8 +48,8 @@ void	print_t_cord(t_screen *map)
 	int i;
 
 	i = 0;
-	if (!map->cord)
-		return ;
+	//if (!map->cord)
+	//	return ;
 	while (i < map->x_max * map->y_max)
 	{
 		ft_printf("%d,(%d,%d,%d)\n", i,
@@ -62,13 +62,19 @@ void	print_t_cord(t_screen *map)
 
 
 /*Free array when parsing fails*/
-void	free_arr(char **arr, int cols)
+void	free_arr(char **arr)
 {
-	while (cols > -1)
+	int i;
+
+	i = 0;
+	while (arr[i])
 	{
-		free(arr[cols]);
-		cols --;
+		free(arr[i]);
+		arr[i] = NULL;
+		i ++;
 	}
+	free (arr);
+	arr = NULL;
 }
 
 void free_coord(t_cord	*cord)

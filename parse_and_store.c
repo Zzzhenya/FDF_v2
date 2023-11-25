@@ -26,7 +26,7 @@ int	store_3d_cords(t_screen *map, int fd, int i)
 			cols ++;
 			i ++;
 		}
-		free(arr);
+		free_arr(arr, cols-1);
 		rows ++;
 	}
 	return (0);
@@ -48,24 +48,25 @@ int ft_parse (char *str, t_screen *scrn)
 		//ft_errexit("Map is not a rectangle.");
 	// check for numeric values, NULL, INT MAX and INT MIN
 	close (fd);
+	ft_printf("%d\n", scrn->x_max);
 	return (1);
 }
 
 int parse_and_store(t_screen *scrn, char *name)
 {
-	int	fd;
+	//int	fd;
 
 	if (!ft_parse(name, scrn))
 	{
 		free_screen(scrn);
 		ft_errexit("Parsing error");
 	}
-	fd = open (name, O_RDONLY);
-	if (fd < 0)
+	//fd = open (name, O_RDONLY);
+	//if (fd < 0)
 		//ft_errexit("open() error.");
 		return (0);
-	store_3d_cords(scrn, fd, 0);
-	print_t_cord(scrn);
-	close (fd);
+	//store_3d_cords(scrn, fd, 0);
+	//print_t_cord(scrn);
+	//close (fd);
 	return (1);
 }
