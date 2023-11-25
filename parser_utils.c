@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include <stdio.h>
 
 /* File type check */
 int	ft_strstr(const char *haystack, const char *needle)
@@ -114,12 +115,11 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 		line = get_next_line(fd);
 		if (!line)
 		{
+			map->y_max = i;
+			close(fd);
 			if (i == 0)
-			{
-				close(fd);
 				return (-1);
-			}
-			break;
+			return (1);
 		}
 		arr = ft_split(line, ' ');
 		print_arr(arr);
@@ -134,18 +134,10 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 		{
 			free_arr (arr);
 			arr = NULL;
-			while (1)
-			{
-				line = get_next_line(fd);
-				if (!line)
-				{
-					close(fd);
-					return (-1);
-				}
-				free (line);
-				line = NULL;
-			}
-			
+			free (line);
+			line = NULL;
+			close(fd);
+			ft_errexit("Not a rectangle");
 		}
 		free (line);
 		line = NULL;
@@ -153,7 +145,4 @@ int	check_for_shape(int fd, t_screen *map, char *str)
 		arr = NULL;
 		i ++;
 	}
-	map->y_max = i;
-	close(fd);
-	return (1);
 }
