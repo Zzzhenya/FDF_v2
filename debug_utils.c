@@ -26,7 +26,6 @@ static void clear_2d_cords(t_obj *map)
 
 void 	clear_3d_cords(t_screen  *map)
 {
-	int 	i;
 	t_cord *cord;
 
 	i = 0;
