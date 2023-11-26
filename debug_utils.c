@@ -43,7 +43,7 @@ void	print_t_cord(t_screen *map)
 	//	return ;
 	while (i < map->x_max * map->y_max)
 	{
-		ft_printf("%d,(%d,%d,%d)\n", i,
+		ft_printf("cord: %d,(%d,%d,%d)\n", i,
 			map->cord[i].x,
 			map->cord[i].y,
 			map->cord[i].z);
@@ -106,7 +106,29 @@ void print_screen_details(t_screen *scrn)
 {
 	printf("alpha: %f\n", scrn->a);
 	printf("beta: %f\n", scrn->b);
-	ft_printf("width :%d\n", scrn->x_max);
-	ft_printf("height :%d\n", scrn->y_max);
-	ft_printf("depth :%d\n", scrn->z_max);
+	ft_printf("x_max :%d\n", scrn->x_max);
+	ft_printf("y_max :%d\n", scrn->y_max);
+	ft_printf("z_max :%d\n", scrn->z_max);
+	ft_printf("z_min :%d\n", scrn->z_max);
+	if (scrn->cord)
+		print_t_cord(scrn);
+	if (scrn->iso)
+		print_t_vert(scrn);
+}
+
+void	print_t_vert(t_screen *map)
+{
+	int i;
+
+	i = 0;
+	//if (!map->cord)
+	//	return ;
+	while (i < map->x_max * map->y_max)
+	{
+		printf ("vert: %d,(%f,%f,%f)\n", i,
+			map->iso[i].x,
+			map->iso[i].y,
+			map->iso[i].z);
+		i ++;
+	}
 }

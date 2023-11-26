@@ -11,6 +11,7 @@ typedef struct s_vert
 {
 	float 		x;
 	float 		y;
+	float		z;
 }				t_vert;
 
 typedef struct s_cord
@@ -26,6 +27,7 @@ typedef struct	s_screen
 	int 	y_max;
 	int 	z_max;
 	int  	z_min;
+	int  	scale;
 	float  		a;
 	float 		b;
 	t_cord	*cord;
@@ -40,7 +42,8 @@ void	free_screen(t_screen *scrn);
 void	print_screen_details(t_screen *scrn);
 void	free_arr(char **arr);
 void	print_t_cord(t_screen *map);
-void 	clear_3d_cords(t_screen  *map);
+void	print_t_vert(t_screen *map);
+//void 	clear_3d_cords(t_screen  *map);
 
 
 /* parse_and_store.c */
@@ -52,5 +55,9 @@ int	store_3d_cords(t_screen *map, int fd, int i);
 int	ft_strstr(const char *haystack, const char *needle);
 void	check_for_shape(int fd, t_screen *map);
 void get_map_dims(int fd, t_screen *scrn, int i);
+
+/* fdf_init.c */
+
+void	fdf_init(t_screen *scrn);
 
 #endif
