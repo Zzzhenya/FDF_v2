@@ -75,14 +75,14 @@ void	check_for_shape(int fd, t_screen *map)
 		{
 			cols ++;
 		}
+		free (line);
+		free_arr (arr);
 		if (cols < (*map).x_max || cols > (*map).x_max)
 		{
 			close(fd);
 			free (map);
 			ft_errexit("Map is not a rectangle.");
 		}
-		free (line);
-		free_arr (arr);
 	}
 	ft_printf("cols :%d\nrows :%d\n", (*map).x_max, (*map).y_max);
 }

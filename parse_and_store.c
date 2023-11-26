@@ -49,7 +49,7 @@ int ft_parse (char *str, t_screen *scrn)
 	if (fd < 0)
 		//ft_errexit("open() error.");
 		return (0);
-	//check_for_shape(fd, scrn);
+	check_for_shape(fd, scrn);
 	// check for numeric values, NULL, INT MAX and INT MIN
 	close (fd);
 	ft_printf("%d\n", scrn->x_max);
