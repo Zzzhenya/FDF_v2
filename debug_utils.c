@@ -28,7 +28,6 @@ void 	clear_3d_cords(t_screen  *map)
 {
 	t_cord *cord;
 
-	i = 0;
 	cord = map->cord;
 	free(cord);
 	cord = NULL;
