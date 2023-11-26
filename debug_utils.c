@@ -36,6 +36,7 @@ void 	clear_3d_cords(t_screen  *map)
 		cord[i].x = 0;
 		cord[i].z = 0;
 		cord[i].y = 0;
+		//free(&cord[i]);
 		i ++;
 	}
 	free(cord);

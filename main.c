@@ -30,7 +30,8 @@ int main(int argc, char **argv)
 	print_screen_details(scrn);
 	parse_and_store(scrn, argv[1]);
 	print_screen_details(scrn);
-	//clear_3d_cords(scrn);
+	print_t_cord(scrn);
+	clear_3d_cords(scrn);
 	free_screen(scrn);
 	return (EXIT_SUCCESS);
 }
