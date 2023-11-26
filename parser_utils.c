@@ -81,7 +81,8 @@ void	check_for_shape(int fd, t_screen *map)
 		{
 			close(fd);
 			free (map);
-			ft_errexit("Map is not a rectangle.");
+			perror("Empty!");
+			//ft_errexit("Map is not a rectangle.");
 		}
 	}
 	ft_printf("cols :%d\nrows :%d\n", (*map).x_max, (*map).y_max);
