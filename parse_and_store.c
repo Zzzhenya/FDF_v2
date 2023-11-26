@@ -8,7 +8,7 @@ int	store_3d_cords(t_screen *map, int fd, int i)
 	int 	cols;
 
 	rows = 0;
-	(*map).cord = malloc ((*map).x_max * (*map).y_max * sizeof(t_cord *));
+	(*map).cord = malloc ((*map).x_max * (*map).y_max * sizeof(t_cord));
 	if (!(*map).cord)
 		return (-1);
 	while (rows < (*map).y_max)
