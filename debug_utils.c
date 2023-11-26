@@ -31,14 +31,6 @@ void 	clear_3d_cords(t_screen  *map)
 
 	i = 0;
 	cord = map->cord;
-	while (i < map->x_max * map->y_max)
-	{
-		cord[i].x = 0;
-		cord[i].z = 0;
-		cord[i].y = 0;
-		//free(&cord[i]);
-		i ++;
-	}
 	free(cord);
 	cord = NULL;
 	ft_printf("...Grid cleared.\n");
