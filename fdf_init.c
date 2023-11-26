@@ -1,35 +1,34 @@
 #include "fdf.h"
 
-void rot_on_y(t_screen *scrn, int i, float b)
+t_screen *rot_on_y(t_screen *scrn, int i, float b)
 {
-	scrn->iso[i].x = scrn->cord[i].x * cosf(b) - scrn->cord[i].z * sinf(b);
+	scrn->iso[i].x = scrn->cord[i].x * cos(b) - scrn->cord[i].z * sin(b);
 	scrn->iso[i].y = scrn->cord[i].y;
-	scrn->iso[i].z = scrn->cord[i].x * sinf(b) + scrn->cord[i].z * cosf(b);
+	scrn->iso[i].z = scrn->cord[i].x * sin(b) + scrn->cord[i].z * cos(b);
+	return (scrn);
 }
 
-void rot_on_x(t_screen *scrn, int i, float a)
+t_screen *rot_on_x(t_screen *scrn, int i, float a)
 {
 	scrn->iso[i].x = scrn->iso[i].x;
 	scrn->iso[i].y = scrn->iso[i].y * cosf(a) + scrn->iso[i].z * sinf(a);
 	scrn->iso[i].z = scrn->iso[i].z * cosf(a) - scrn->iso[i].y * sinf(a);
+	return (scrn);
 }
 
-void ortho(t_screen *scrn, int i)
+t_screen *ortho(t_screen *scrn, int i)
 {
 	scrn->iso[i].x = scrn->iso[i].x * 1;
 	scrn->iso[i].y = scrn->iso[i].y * 1;
 	scrn->iso[i].z = scrn->iso[i].z * 0;
-
+	return (scrn);
 }
 
 void	calc_screen_cords(t_screen *scrn)
 {
 	int i;
-	float a;
-	float b;
 	
-	a = scrn->a;
-	b = scrn->b;
+	i = 0;
 	scrn->iso = malloc (scrn->x_max * scrn->y_max * (sizeof(t_vert)));
 	if (!scrn->iso)
 	{
@@ -37,12 +36,11 @@ void	calc_screen_cords(t_screen *scrn)
 		free_screen (scrn);
 		ft_errexit("malloc failed.");
 	}
-	i = 0;
 	while (i < (scrn->y_max * scrn->x_max))
 	{
-		rot_on_y(scrn, i, b);
-		rot_on_x(scrn, i, a);
-		ortho(scrn, i);
+		scrn = rot_on_y(scrn, i, scrn->b);
+		scrn = rot_on_x(scrn, i, scrn->a);
+		scrn = ortho(scrn, i);
 		/*
 		map->iso[i].x = map->cord[i].x * fabs(cosf(a)) + \
 		map->cord[i].y * fabs(cosf(a + 2)) + \
