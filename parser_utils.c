@@ -69,7 +69,7 @@ void	check_for_shape(int fd, t_screen *map)
 		while (arr[cols])
 			cols ++;
 		free_arr (arr);
-		if (cols <= (*map).x_max || cols >= (*map).x_max)
+		if (cols < (*map).x_max || cols > (*map).x_max)
 			err = 1;
 		line = get_next_line(fd);
 	}
