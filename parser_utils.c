@@ -56,8 +56,10 @@ void	check_for_shape(int fd, t_screen *map)
 	char	**arr;
 	int 	cols;
 	int    	rows;
+	char 	*err;
 
 
+	err = NULL;
 	ft_printf("check_for_shape");
 	rows = 0;
 	while (rows < map->y_max)
@@ -78,14 +80,15 @@ void	check_for_shape(int fd, t_screen *map)
 		free (line);
 		free_arr (arr);
 		if (cols < (*map).x_max || cols > (*map).x_max)
-		{
-			close(fd);
-			free (map);
-			perror("Empty!");
-			//ft_errexit("Map is not a rectangle.");
-		}
+			err = "Err check";
 	}
 	ft_printf("cols :%d\nrows :%d\n", (*map).x_max, (*map).y_max);
+	if (err)
+	{
+		close(fd);
+		free (map);
+		ft_errexit("Map is not a rectangle.");
+	}
 }
 
 void print_arr(char **arr)
