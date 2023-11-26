@@ -38,7 +38,7 @@ void	calc_screen_cords(t_screen *scrn)
 		ft_errexit("malloc failed.");
 	}
 	i = 0;
-	while (i < scrn->y_max * scrn->x_max)
+	while (i < (scrn->y_max * scrn->x_max))
 	{
 		rot_on_y(scrn, i, b);
 		rot_on_x(scrn, i, a);
