@@ -55,35 +55,25 @@ void	check_for_shape(int fd, t_screen *map)
 	char	*line;
 	char	**arr;
 	int 	cols;
-	int    	rows;
-	char 	*err;
+	int		err;
 
 
-	err = NULL;
-	ft_printf("check_for_shape");
-	rows = 0;
-	while (rows < map->y_max)
+	err = 0;
+	ft_printf("check_for_shape\n");
+	line = get_next_line(fd);
+	while (line)
 	{
-		line = get_next_line(fd);
-		if (!line)
-		{
-			close(fd);
-			free (map);
-			ft_errexit("gnl() error.");
-		}
 		arr = ft_split(line, ' ');
-		cols = 0;
-		while (arr[cols] != (void *)0)
-		{
-			cols ++;
-		}
 		free (line);
+		cols = 0;
+		while (arr[cols])
+			cols ++;
 		free_arr (arr);
-		if (cols < (*map).x_max || cols > (*map).x_max)
-			err = "Err check";
+		if (cols <= (*map).x_max || cols >= (*map).x_max)
+			err = 1;
+		line = get_next_line(fd);
 	}
-	ft_printf("cols :%d\nrows :%d\n", (*map).x_max, (*map).y_max);
-	if (err)
+	if (err > 0)
 	{
 		close(fd);
 		free (map);
@@ -130,4 +120,5 @@ void get_map_dims(int fd, t_screen *scrn, int i)
 		line = get_next_line(fd);
 	}
 	scrn->y_max = i;
+	ft_printf("x,y max %d, %d\n", scrn->x_max, scrn->y_max);
 }
