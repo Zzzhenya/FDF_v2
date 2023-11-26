@@ -5,7 +5,7 @@ t_screen *init_screen(t_screen	*scrn)
 	scrn = malloc (sizeof (t_screen));
 	if (!scrn)
 		return (0);
-	scrn->a = 35.264 * M_PI/180;
+	scrn->a = 360;//35.264 * M_PI/180;
 	scrn->b = 45 * M_PI/180;
 	scrn->x_max = 0;
 	scrn->y_max = 0;

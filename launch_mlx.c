@@ -25,7 +25,7 @@ int launch_mlx_window(t_screen	*map)
 	//mlx_image_to_window(mlx, g_img, WIDTH* 2/5, HEIGHT * 2/5);  // Adds an image to the render queue.
     draw_verts(map, g_img);
     //draw_image(map, g_img);
-    mlx_image_to_window(mlx, g_img, 300, 200);  // Adds an image to the render queue.
+    mlx_image_to_window(mlx, g_img, WIDTH/3, HEIGHT/3);  // Adds an image to the render queue.
 	ft_printf("cols :%d\nrows :%d\n", (*map).x_max, (*map).y_max);
 	// Connect the dots here
 	mlx_loop(mlx);

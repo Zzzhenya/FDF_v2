@@ -24,6 +24,21 @@ t_screen *rot_on_y(t_screen *scrn, int i, float b)
 	return (scrn);
 }
 
+t_screen *rot_on_z(t_screen *scrn, int i, float b)
+{
+	float x;
+	float y;
+	float z;
+
+	x = scrn->iso[i].x;
+	y = scrn->iso[i].y;
+	z = scrn->iso[i].z;
+	scrn->iso[i].x = x * cosf(b) - y * sinf(b);
+	scrn->iso[i].z = z;
+	scrn->iso[i].y = x * sinf(b) + y * cosf(b);
+	return (scrn);
+}
+
 t_screen *rot_on_x(t_screen *scrn, int i, float a)
 {
 	float x;
@@ -63,7 +78,8 @@ void	calc_screen_cords(t_screen *scrn)
 	{
 		scrn = setup_vert(scrn, i);
 		
-		scrn = rot_on_y(scrn, i, scrn->b);
+		scrn = rot_on_z(scrn, i, scrn->b);
+		//scrn = rot_on_y(scrn, i, scrn->b);
 		scrn = rot_on_x(scrn, i, scrn->a);
 		scrn = ortho(scrn, i);
 		/*
