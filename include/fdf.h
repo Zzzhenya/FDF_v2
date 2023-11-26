@@ -7,6 +7,9 @@
 # include <math.h>
 # include <stdlib.h>
 
+# define WIDTH 1024
+# define HEIGHT 750
+
 typedef struct s_vert
 {
 	float 		x;
@@ -30,6 +33,7 @@ typedef struct	s_screen
 	int  	scale;
 	float  		a;
 	float 		b;
+	float 		c;
 	t_cord	*cord;
 	t_vert	*iso;
 }				t_screen;
@@ -59,5 +63,9 @@ void get_map_dims(int fd, t_screen *scrn, int i);
 /* fdf_init.c */
 
 void	fdf_init(t_screen *scrn);
+
+/* launc_mlx.c */
+
+int launch_mlx_window(t_screen	*map);
 
 #endif

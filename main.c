@@ -5,14 +5,13 @@ t_screen *init_screen(t_screen	*scrn)
 	scrn = malloc (sizeof (t_screen));
 	if (!scrn)
 		return (0);
-	//scrn->a = 35.264 * M_PI/180;
-	//scrn->b = 45 * M_PI/180;
-	scrn->a = 0.6154;
-	scrn->b = 0.7854;
+	scrn->a = 35.264 * M_PI/180;
+	scrn->b = 45 * M_PI/180;
 	scrn->x_max = 0;
 	scrn->y_max = 0;
 	scrn->z_max = 0;
-	scrn->scale = 1;
+	scrn->z_min = 0;
+	scrn->scale = 10;
 	scrn->iso = NULL;
 	scrn->cord = NULL;
 	return (scrn);
@@ -38,6 +37,7 @@ int main(int argc, char **argv)
 	//print_t_cord(scrn);
 	fdf_init (scrn);
 	//clear_3d_cords (scrn);
+	launch_mlx_window(scrn);
 	free_coord(scrn->cord);
 	free_vert(scrn->iso);
 	free_screen (scrn);
