@@ -6,12 +6,12 @@ t_screen *init_screen(t_screen	*scrn)
 	if (!scrn)
 		return (0);
 	scrn->a = 360;//35.264 * M_PI/180;
-	scrn->b = 45 * M_PI/180;
+	scrn->b = 35.264 * M_PI/180;
 	scrn->x_max = 0;
 	scrn->y_max = 0;
 	scrn->z_max = 0;
 	scrn->z_min = 0;
-	scrn->scale = 10;
+	scrn->scale = 20;
 	scrn->iso = NULL;
 	scrn->cord = NULL;
 	return (scrn);
