@@ -11,6 +11,8 @@ t_screen *init_screen(t_screen	*scrn)
 	scrn->y_max = 0;
 	scrn->z_max = 0;
 	scrn->scale = 1;
+	scrn->iso = NULL;
+	scrn->cord = NULL;
 	return (scrn);
 }
 
