@@ -2,11 +2,11 @@
 
 t_screen *rot_on_y(t_screen *scrn, int i, float b)
 {
-	scrn->iso[i].x = (float)scrn->cord[i].x * cos(b) - \
-	(float)scrn->cord[i].z * sin(b);
+	scrn->iso[i].x = scrn->cord[i].x * cosf(b) - \
+	scrn->cord[i].z * sinf(b);
 	scrn->iso[i].y = scrn->cord[i].y;
-	scrn->iso[i].z = (float)scrn->cord[i].x * sin(b) + \
-	(float)scrn->cord[i].z * cos(b);
+	scrn->iso[i].z = scrn->cord[i].x * sinf(b) + \
+	scrn->cord[i].z * cosf(b);
 	return (scrn);
 }
 
