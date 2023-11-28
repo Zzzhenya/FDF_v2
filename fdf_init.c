@@ -92,9 +92,10 @@ void	calc_screen_cords(t_screen *scrn)
 		*/
 		scrn->iso[i].x *= scrn->scale;
 		scrn->iso[i].y *= scrn->scale;
+		scrn->iso[i].z = fabsf(scrn->iso[i].z);
 		i ++;
 	}
-	print_screen_details (scrn);
+	/*print_screen_details (scrn);*/
 }
 
 void	find_screen_limits(t_screen *scrn)

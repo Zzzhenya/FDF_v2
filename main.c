@@ -31,13 +31,13 @@ int main(int argc, char **argv)
 	scrn = init_screen (scrn);
 	if (!scrn)
 		ft_errexit("t_screen init error");
-	print_screen_details (scrn);
+	/*print_screen_details (scrn);*/
 	parse_and_store (scrn, argv[1]);
-	print_screen_details (scrn);
 	//print_t_cord(scrn);
 	fdf_init (scrn);
 	//clear_3d_cords (scrn);
 	launch_mlx_window(scrn);
+	/*print_screen_details (scrn);*/
 	free_coord(scrn->cord);
 	free_vert(scrn->iso);
 	free_screen (scrn);

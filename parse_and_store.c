@@ -51,7 +51,7 @@ int ft_parse (char *str, t_screen *scrn)
 	check_for_shape(fd, scrn);
 	// check for numeric values, NULL, INT MAX and INT MIN
 	close (fd);
-	ft_printf("%d\n", scrn->x_max);
+	/*ft_printf("%d\n", scrn->x_max);*/
 	return (1);
 }
 
