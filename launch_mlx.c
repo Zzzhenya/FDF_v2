@@ -1,14 +1,28 @@
 #include "fdf.h"
 #include <stdio.h>
 
+/*
 void draw_pixel(uint8_t* pixel, uint32_t color)
 {
 	*(pixel++) = (uint8_t)(color >> 24);
 	*(pixel++) = (uint8_t)(color >> 16);
 	*(pixel++) = (uint8_t)(color >> 8);
 	*(pixel++) = (uint8_t)(color & 0xFF);
+}*/
+
+void make_pixel(uint8_t* pixel, uint32_t color)
+{
+	printf("\ncolor: %d\n", color);
+	printf("\npixel: %d\n", *(pixel));
+	*(pixel++) = (uint8_t)(color >> 24);
+	//printf("color: %d\n", color);
+	//printf("pixel: %d\n", *(pixel));
+	*(pixel++) = (uint8_t)(color >> 16);
+	*(pixel++) = (uint8_t)(color >> 8);
+	*(pixel++) = (uint8_t)(color & 0xFF);
 }
 
+/*
 mlx_image_t *draw_line(int X0, int Y0, int X1, int Y1, mlx_image_t *g_img) 
 { 
     // calculate dx & dy 
@@ -37,7 +51,16 @@ mlx_image_t *draw_line(int X0, int Y0, int X1, int Y1, mlx_image_t *g_img)
                     // generation step by step 
     } 
     return (g_img);
-} 
+} */
+
+mlx_image_t *draw_line(int x0, int y0, int x1, int y1, mlx_image_t *g_img) 
+{
+	(void)x0;
+	(void)y0;
+	(void)x1;
+	(void)y1;
+	return (g_img);
+}
 
 mlx_image_t *draw_image(t_screen *scrn, mlx_image_t *g_img)
 {
@@ -134,10 +157,19 @@ mlx_image_t *draw_dots_to_image(mlx_image_t *g_img, t_screen *scrn)
 	uint8_t* pixelstart;
 	while (i < (scrn->x_max * scrn->y_max))
 	{
-		x = scrn->iso[i].x;
-		y = scrn->iso[i].y;
-		pixelstart= &g_img->pixels[(y * g_img->width + x) * sizeof(int32_t)];
-		draw_pixel(pixelstart, 0xFFFFFFFF);
+		x = (scrn->iso[i].x);
+		y = (scrn->iso[i].y);
+		if (x >= scrn->z_min && y >= scrn->z_max && y <= HEIGHT - HEIGHT/3 && x <= WIDTH - WIDTH/5)
+		{
+			//pixelstart= &g_img->pixels[(y * g_img->width + x) * sizeof(int32_t)];
+			pixelstart= &g_img->pixels[(y * g_img->width + x) * sizeof(int32_t)];
+			printf("(%d,%d) ,",x, y);
+			printf("(%f,%f) ,",scrn->iso[i].x, scrn->iso[i].y);
+			//mlx_put_pixel(g_img, x, y, 0xFFFFFFFF);
+			//mlx_put_pixel(g_img, (scrn->iso[i].x), scrn->iso[i].y, 0xFFFFFFFF);
+			//draw_pixel(pixelstart, 0xFFFFFFFF);
+			make_pixel(pixelstart, 0xFADD8E6);
+		}
 		i ++;
 	}
 	/**
@@ -164,7 +196,9 @@ int launch_mlx_window(t_screen	*map)
 	g_img = mlx_new_image(mlx, WIDTH, HEIGHT);   // Creates a new image.
 
 	g_img = draw_dots_to_image(g_img, map);
-    g_img = draw_image(map, g_img);
+	printf("\ng_img->width: %d\n",g_img->width);
+	printf("\ng_img->height: %d\n",g_img->height);
+    //g_img = draw_image(map, g_img);
     mlx_image_to_window(mlx, g_img, WIDTH/5, HEIGHT/3);  // Adds an image to the render queue.
     //draw_verts(map, g_img);
     //draw_image(map, g_img);
