@@ -10,6 +10,20 @@
 # define WIDTH 1024
 # define HEIGHT 750
 
+typedef struct s_line
+{
+	int			x0;
+	int			y0;
+	int			x1;
+	int			y1;
+	int			dx;
+	int			dy;
+	int			sx;
+	int			sy;
+	int			e;
+	int			e2;
+}				t_line;
+
 typedef struct s_vert
 {
 	float 		x;
