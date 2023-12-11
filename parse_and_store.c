@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_and_store.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/11 18:11:13 by sde-silv          #+#    #+#             */
+/*   Updated: 2023/12/11 18:11:29 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	store_3d_cords(t_screen *map, int fd, int i)
@@ -31,38 +43,41 @@ int	store_3d_cords(t_screen *map, int fd, int i)
 	return (0);
 }
 
+/* check for numeric values, NULL, INT MAX and INT MIN after checking for shape*/
 int ft_parse (char *str, t_screen *scrn)
 {
 	int 	fd;
 
 	if (!ft_strstr(str, ".fdf"))
-		return (0);
-		//ft_errexit("Incorrect file type. It should be a .fdf");
+		return (1);
 	fd = open (str, O_RDONLY);
 	if (fd < 0)
-		//ft_errexit("open() error.");
-		return (0);
+		return (2);
 	get_map_dims(fd, scrn, 0);
 	close (fd);
 	fd = open (str, O_RDONLY);
 	if (fd < 0)
-		//ft_errexit("open() error.");
-		return (0);
+		return (2);
 	check_for_shape(fd, scrn);
-	// check for numeric values, NULL, INT MAX and INT MIN
 	close (fd);
-	/*ft_printf("%d\n", scrn->x_max);*/
-	return (1);
+	return (0);
 }
 
 int parse_and_store(t_screen *scrn, char *name)
 {
 	int	fd;
+	int ret;
 
-	if (!ft_parse(name, scrn))
+	ret = ft_parse(name, scrn); 
+	if (ret > 0)
 	{
 		free_screen(scrn);
-		ft_errexit("Parsing error");
+		if (ret == 1)
+			ft_errexit("Incorrect file type. It should be a .fdf");
+		else if (ret == 2)
+			ft_errexit("open() error.");
+		else
+			ft_errexit("Parsing error");
 	}
 	fd = open (name, O_RDONLY);
 	if (fd < 0)
@@ -72,7 +87,6 @@ int parse_and_store(t_screen *scrn, char *name)
 		//return (0);
 	}
 	store_3d_cords(scrn, fd, 0);
-	//print_t_cord(scrn);
 	close (fd);
 	return (1);
 }

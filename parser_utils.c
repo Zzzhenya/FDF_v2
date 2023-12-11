@@ -21,36 +21,9 @@ int	ft_strstr(const char *haystack, const char *needle)
 		return (0);
 }
 
-/* Parse through the first line and store width of map
-static void check_first_line (int fd, t_screen *map)
-{
-	char	*arr;
-	char 	**line;
-	int i;
 
-	i = 0;
-	line = get_next_line(fd);
-	if (!line)
-	{
-		close (fd);
-		return;
-		//ft_errexit("Map is empty.");
-	}
-	ft_printf("first line:%s\n", line);
-	arr = ft_split(line, ' ');
-	while (arr[i] != NULL)
-	{
-		ft_printf("One\n");
-		i ++;
-	}
-	map->x_max = i;
-	free_arr (&arr, (*map).x_max);
-	free (line);
-	close(fd);
-}
-*/
-/* Parse through the rest of the map store height of map */
-void	check_for_shape(int fd, t_screen *map)
+/* Check whether the map is a rectangle */
+void	check_for_shape(int fd, t_screen *scrn)
 {
 	char	*line;
 	char	**arr;
@@ -59,7 +32,6 @@ void	check_for_shape(int fd, t_screen *map)
 
 
 	err = 0;
-	ft_printf("check_for_shape\n");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -69,14 +41,14 @@ void	check_for_shape(int fd, t_screen *map)
 		while (arr[cols])
 			cols ++;
 		free_arr (arr);
-		if (cols < (*map).x_max || cols > (*map).x_max)
+		if (cols < (scrn->x_max || cols > scrn->x_max))
 			err = 1;
 		line = get_next_line(fd);
 	}
 	if (err > 0)
 	{
 		close(fd);
-		free (map);
+		free (scrn);
 		ft_errexit("Map is not a rectangle.");
 	}
 }
@@ -91,7 +63,6 @@ void print_arr(char **arr)
 		ft_printf("%d :%s\n",i, arr[i]);
 		i ++;
 	}
-
 }
 
 void get_map_dims(int fd, t_screen *scrn, int i)
@@ -103,15 +74,15 @@ void get_map_dims(int fd, t_screen *scrn, int i)
 	line = get_next_line(fd);
 	if (!line)
 	{
-		close(fd);
+		close (fd);
 		free (scrn);
-		ft_errexit("Empty map");
+		ft_errexit ("Empty map");
 	}
 	arr = ft_split(line, ' ');
 	while (arr[i])
 		i ++;
 	scrn->x_max = i;
-	free_arr(arr);
+	free_arr (arr);
 	i = 0;
 	while (line)
 	{
@@ -120,5 +91,4 @@ void get_map_dims(int fd, t_screen *scrn, int i)
 		line = get_next_line(fd);
 	}
 	scrn->y_max = i;
-	ft_printf("x,y max %d, %d\n", scrn->x_max, scrn->y_max);
 }
