@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/11 18:26:21 by sde-silv          #+#    #+#             */
+/*   Updated: 2023/12/11 18:26:33 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-#include <stdio.h>
 
 /* File type check */
 int	ft_strstr(const char *haystack, const char *needle)
@@ -21,15 +32,13 @@ int	ft_strstr(const char *haystack, const char *needle)
 		return (0);
 }
 
-
 /* Check whether the map is a rectangle */
 void	check_for_shape(int fd, t_screen *scrn)
 {
 	char	*line;
 	char	**arr;
-	int 	cols;
+	int		cols;
 	int		err;
-
 
 	err = 0;
 	line = get_next_line(fd);
@@ -53,19 +62,19 @@ void	check_for_shape(int fd, t_screen *scrn)
 	}
 }
 
-void print_arr(char **arr)
+void	print_arr(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arr[i])
 	{
-		ft_printf("%d :%s\n",i, arr[i]);
+		ft_printf ("%d :%s\n", i, arr[i]);
 		i ++;
 	}
 }
 
-void get_map_dims(int fd, t_screen *scrn, int i)
+void	get_map_dims(int fd, t_screen *scrn, int i)
 {
 	char	*line;
 	char	**arr;
