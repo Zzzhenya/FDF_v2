@@ -35,7 +35,7 @@ mlx_image_t	*line_helper(int x, int y, t_line *line, mlx_image_t *g_img, t_scree
 			{
 				pixelstart = &g_img->pixels[(y * g_img->width + x) \
 				* sizeof(int32_t)];
-				make_pixel (pixelstart, 0xFADD8E6, scrn);
+				make_pixel (pixelstart, 0xFADD8E6);
 			}
 		}
 		if (line->x0 == line->x1 && line->y0 == line->y1)
