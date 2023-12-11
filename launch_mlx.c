@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	make_pixel(uint8_t *pixel, uint32_t color, t_screen *scrn)
+void	make_pixel(uint8_t *pixel, uint32_t color)
 {
 	*(pixel++) = (uint8_t)(color >> 24);
 	*(pixel++) = (uint8_t)(color >> 16);
