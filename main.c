@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	scrn = NULL;
 	if (argc != 2)
 	{
-		ft_printf ("	Usage: ./fdf map.fdf\n");
+		ft_printf ("	Usage: ./fdf *.fdf\n");
 		return (EXIT_FAILURE);
 	}
 	ft_printf ("file: %s\n", argv[1]);
