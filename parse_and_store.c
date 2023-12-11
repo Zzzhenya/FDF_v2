@@ -12,41 +12,46 @@
 
 #include "fdf.h"
 
-int	store_3d_cords(t_screen *map, int fd, int i)
+static void	free_stuff_and_exit(t_screen *scrn, int fd)
+{
+	free_screen(scrn);
+	close (fd);
+	ft_errexit("Malloc failed");
+}
+
+void	store_3d_cords(t_screen *scrn, int fd, int i, int rows)
 {
 	char	*line;
-	char 	**arr;
-	int		rows;
-	int 	cols;
+	char	**arr;
+	int		cols;
 
-	rows = 0;
-	(*map).cord = malloc ((*map).x_max * (*map).y_max * sizeof(t_cord));
-	if (!(*map).cord)
-		return (-1);
-	while (rows < (*map).y_max)
+	scrn->cord = malloc (scrn->x_max * scrn->y_max * sizeof(t_cord));
+	if (!scrn->cord)
+		free_stuff_and_exit(scrn, fd);
+	while (rows < scrn->y_max)
 	{
 		line = get_next_line(fd);
 		arr = ft_split(line, ' ');
 		free (line);
 		cols = 0;
-		while (cols < (*map).x_max)	
+		while (cols < scrn->x_max)
 		{
-			(*map).cord[i].y = rows;
-			(*map).cord[i].x = cols;
-			(*map).cord[i].z = ft_atoi(arr[cols]);
+			scrn->cord[i].y = rows;
+			scrn->cord[i].x = cols;
+			scrn->cord[i].z = ft_atoi(arr[cols]);
 			cols ++;
 			i ++;
 		}
 		free_arr(arr);
 		rows ++;
 	}
-	return (0);
 }
 
-/* check for numeric values, NULL, INT MAX and INT MIN after checking for shape*/
-int ft_parse (char *str, t_screen *scrn)
+/* check for numeric values, NULL, INT MAX and 
+INT MIN after checking for shape*/
+int	ft_parse(char *str, t_screen *scrn)
 {
-	int 	fd;
+	int	fd;
 
 	if (!ft_strstr(str, ".fdf"))
 		return (1);
@@ -63,10 +68,10 @@ int ft_parse (char *str, t_screen *scrn)
 	return (0);
 }
 
-int parse_and_store(t_screen *scrn, char *name)
+int	parse_and_store(t_screen *scrn, char *name)
 {
 	int	fd;
-	int ret;
+	int	ret;
 
 	ret = ft_parse(name, scrn); 
 	if (ret > 0)
@@ -84,9 +89,8 @@ int parse_and_store(t_screen *scrn, char *name)
 	{
 		free_screen(scrn);
 		ft_errexit("open() error.");
-		//return (0);
 	}
-	store_3d_cords(scrn, fd, 0);
+	store_3d_cords(scrn, fd, 0, 0);
 	close (fd);
 	return (1);
 }
