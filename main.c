@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/11 18:06:13 by sde-silv          #+#    #+#             */
+/*   Updated: 2023/12/11 18:06:25 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-t_screen *init_screen(t_screen	*scrn)
+t_screen	*init_screen(t_screen	*scrn)
 {
 	scrn = malloc (sizeof (t_screen));
 	if (!scrn)
 		return (0);
-	scrn->a = 360;//35.264 * M_PI/180;
-	scrn->b = 35.264 * M_PI/180;
+	scrn->a = 360;
+	scrn->b = 35.264 * M_PI / 180;
 	scrn->x_max = 0;
 	scrn->y_max = 0;
 	scrn->z_max = 0;
@@ -17,7 +29,7 @@ t_screen *init_screen(t_screen	*scrn)
 	return (scrn);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_screen	*scrn;
 
@@ -27,7 +39,6 @@ int main(int argc, char **argv)
 		ft_printf ("	Usage: ./fdf *.fdf\n");
 		return (EXIT_FAILURE);
 	}
-	ft_printf ("file: %s\n", argv[1]);
 	scrn = init_screen (scrn);
 	if (!scrn)
 		ft_errexit("t_screen init error");
