@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/11 19:30:56 by sde-silv          #+#    #+#             */
+/*   Updated: 2023/12/11 19:30:59 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -26,30 +38,30 @@ typedef struct s_line
 
 typedef struct s_vert
 {
-	float 		x;
-	float 		y;
+	float		x;
+	float		y;
 	float		z;
 }				t_vert;
 
 typedef struct s_cord
 {
-	int 		x;
-	int 		y;
-	int 		z;
+	int			x;
+	int			y;
+	int			z;
 }				t_cord;
 
-typedef struct	s_screen
+typedef struct s_screen
 {
-	int 	x_max;
-	int 	y_max;
-	int 	z_max;
-	int  	z_min;
-	int  	scale;
-	float  		a;
-	float 		b;
-	float 		c;
-	t_cord	*cord;
-	t_vert	*iso;
+	int			x_max;
+	int			y_max;
+	int			z_max;
+	int			z_min;
+	int			scale;
+	float		a;
+	float		b;
+	float		c;
+	t_cord		*cord;
+	t_vert		*iso;
 }				t_screen;
 
 /* debug_utils.c */
@@ -63,16 +75,15 @@ void	print_t_cord(t_screen *map);
 void	print_t_vert(t_screen *map);
 //void 	clear_3d_cords(t_screen  *map);
 
-
 /* parse_and_store.c */
 
-int 	parse_and_store(t_screen *scrn, char *name);
+int		parse_and_store(t_screen *scrn, char *name);
 void	store_3d_cords(t_screen *scrn, int fd, int i, int rows);
 
 /* parser_utils.c */
-int	ft_strstr(const char *haystack, const char *needle);
+int		ft_strstr(const char *haystack, const char *needle);
 void	check_for_shape(int fd, t_screen *map);
-void get_map_dims(int fd, t_screen *scrn, int i);
+void	get_map_dims(int fd, t_screen *scrn, int i);
 
 /* fdf_init.c */
 
@@ -80,6 +91,6 @@ void	fdf_init(t_screen *scrn);
 
 /* launc_mlx.c */
 
-int launch_mlx_window(t_screen	*map);
+int		launch_mlx_window(t_screen	*map);
 
 #endif
