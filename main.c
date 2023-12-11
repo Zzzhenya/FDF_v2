@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_printf ("	Usage: ./fdf *.fdf\n");
-		return (EXIT_FAILURE);
+		return (1);
 	}
 	scrn = init_screen (scrn);
 	if (!scrn)
@@ -48,5 +48,5 @@ int	main(int argc, char **argv)
 	free_coord(scrn->cord);
 	free_vert(scrn->iso);
 	free_screen (scrn);
-	return (EXIT_SUCCESS);
+	return (0);
 }
