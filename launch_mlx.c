@@ -69,18 +69,18 @@ mlx_image_t	*draw_line(t_line *line, mlx_image_t *g_img, t_screen *scrn)
 
 	x = 0;
 	y = 0;
-	line->dx = abs(line->x1 - line->x0);
+	line->dx = abs (line->x1 - line->x0);
 	if (line->x0 < line->x1)
 		line->sx = 1;
 	else
 		line->sx = -1;
-	line->dy = -abs(line->y1 - line->y0);
+	line->dy = -abs (line->y1 - line->y0);
 	if (line->y0 < line->y1)
 		line->sy = 1;
 	else
 		line->sy = -1;
 	line->e = line->dx + line->dy;
-	g_img = line_helper(x, y, line, g_img, scrn);
+	g_img = line_helper (x, y, line, g_img, scrn);
 	return (g_img);
 }
 
