@@ -79,7 +79,6 @@ void	get_map_dims(int fd, t_screen *scrn, int i)
 	char	*line;
 	char	**arr;
 
-	ft_printf("check_for_dims:");
 	line = get_next_line(fd);
 	if (!line)
 	{

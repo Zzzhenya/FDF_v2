@@ -70,18 +70,18 @@ void	calc_screen_cords(t_screen *scrn)
 	scrn->iso = malloc (scrn->x_max * scrn->y_max * (sizeof(t_vert)));
 	if (!scrn->iso)
 	{
-		free_coord(scrn->cord);
+		free_coord (scrn->cord);
 		free_screen (scrn);
-		ft_errexit("malloc failed.");
+		ft_errexit ("malloc failed.");
 	}
 	while (i < (scrn->y_max * scrn->x_max))
 	{
-		scrn = setup_vert(scrn, i);
+		scrn = setup_vert (scrn, i);
 		
-		scrn = rot_on_z(scrn, i, scrn->b);
-		scrn = rot_on_x(scrn, i, scrn->a);
-		scrn = ortho(scrn, i);
-		scrn->iso[i].z = fabsf(scrn->iso[i].z);
+		scrn = rot_on_z (scrn, i, scrn->b);
+		scrn = rot_on_x (scrn, i, scrn->a);
+		scrn = ortho (scrn, i);
+		scrn->iso[i].z = fabsf (scrn->iso[i].z);
 		i ++;
 	}
 }
@@ -129,7 +129,7 @@ void scale(t_screen *scrn)
 	else
 		a = HEIGHT / scrn->y_height;
 	if (scrn->x_width > WIDTH)
-		b = scrn->x_width/WIDTH;
+		b = scrn->x_width / WIDTH;
 	else
 		b = WIDTH / scrn->x_width;
 	if (a >= b)

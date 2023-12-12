@@ -20,7 +20,6 @@ void	make_pixel(uint8_t *pixel, uint32_t color)
 	*(pixel++) = (uint8_t)(color & 0xFF);
 }
 
-/*if (x <= WIDTH && y <= HEIGHT && (x >= 0 && y >= 0))*/
 mlx_image_t	*line_helper(int x, int y, t_line *line, mlx_image_t *g_img, t_screen *scrn)
 {
 	uint8_t	*pixelstart;
@@ -29,10 +28,8 @@ mlx_image_t	*line_helper(int x, int y, t_line *line, mlx_image_t *g_img, t_scree
 	{
 		x = line->x0; 
 		y = line->y0;
-		//if (x >= scrn->x_width && y >= scrn->y_height)
 		if (x >= scrn->x_min && y >= scrn->y_min)
 		{
-			//if (y <= HEIGHT - HEIGHT / 3 && x <= WIDTH - WIDTH / 5)
 			if (y <= HEIGHT && x <= WIDTH)
 			{
 				pixelstart = &g_img->pixels[(y * g_img->width + x) \
@@ -143,7 +140,7 @@ int	launch_mlx_window(t_screen	*map)
 	mlx_image_to_window (mlx, g_img, 0, 0);
 	mlx_loop (mlx);
 	mlx_delete_image (mlx, g_img);
-	ft_printf ("... fdf closed. See you tomorrow!\n");
+	ft_printf ("... fdf closed.\n");
 	mlx_terminate (mlx);
 	return (0);
 }
