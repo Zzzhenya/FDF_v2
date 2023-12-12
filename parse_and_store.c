@@ -68,7 +68,7 @@ int	ft_parse(char *str, t_screen *scrn)
 	return (0);
 }
 
-int	parse_and_store(t_screen *scrn, char *name)
+void	parse_and_store(t_screen *scrn, char *name)
 {
 	int	fd;
 	int	ret;
@@ -92,5 +92,4 @@ int	parse_and_store(t_screen *scrn, char *name)
 	}
 	store_3d_cords(scrn, fd, 0, 0);
 	close (fd);
-	return (1);
 }

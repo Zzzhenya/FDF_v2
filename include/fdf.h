@@ -77,7 +77,7 @@ void	print_t_vert(t_screen *map);
 
 /* parse_and_store.c */
 
-int		parse_and_store(t_screen *scrn, char *name);
+void	parse_and_store(t_screen *scrn, char *name);
 void	store_3d_cords(t_screen *scrn, int fd, int i, int rows);
 
 /* parser_utils.c */
