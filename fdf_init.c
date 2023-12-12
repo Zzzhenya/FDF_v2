@@ -1,7 +1,6 @@
 #include "fdf.h"
-#include <stdio.h>
 
-t_screen *setup_vert(t_screen *scrn, int i)
+t_screen	*setup_vert(t_screen *scrn, int i)
 {
 	scrn->iso[i].x = scrn->cord[i].x;
 	scrn->iso[i].y = scrn->cord[i].y;
@@ -10,7 +9,7 @@ t_screen *setup_vert(t_screen *scrn, int i)
 }
 
 
-t_screen *rot_on_y(t_screen *scrn, int i, float b)
+t_screen	*rot_on_y(t_screen *scrn, int i, float b)
 {
 	float x;
 	float y;
@@ -25,7 +24,7 @@ t_screen *rot_on_y(t_screen *scrn, int i, float b)
 	return (scrn);
 }
 
-t_screen *rot_on_z(t_screen *scrn, int i, float b)
+t_screen	*rot_on_z(t_screen *scrn, int i, float b)
 {
 	float x;
 	float y;
@@ -40,7 +39,7 @@ t_screen *rot_on_z(t_screen *scrn, int i, float b)
 	return (scrn);
 }
 
-t_screen *rot_on_x(t_screen *scrn, int i, float a)
+t_screen	*rot_on_x(t_screen *scrn, int i, float a)
 {
 	float x;
 	float y;
@@ -55,7 +54,7 @@ t_screen *rot_on_x(t_screen *scrn, int i, float a)
 	return (scrn);
 }
 
-t_screen *ortho(t_screen *scrn, int i)
+t_screen	*ortho(t_screen *scrn, int i)
 {
 	scrn->iso[i].x = scrn->iso[i].x * 1;
 	scrn->iso[i].y = scrn->iso[i].y * -1;
@@ -80,11 +79,8 @@ void	calc_screen_cords(t_screen *scrn)
 		scrn = setup_vert(scrn, i);
 		
 		scrn = rot_on_z(scrn, i, scrn->b);
-		//scrn = rot_on_y(scrn, i, scrn->b);
 		scrn = rot_on_x(scrn, i, scrn->a);
 		scrn = ortho(scrn, i);
-		//scrn->iso[i].x *= scrn->scale;
-		//scrn->iso[i].y *= scrn->scale;
 		scrn->iso[i].z = fabsf(scrn->iso[i].z);
 		i ++;
 	}
@@ -103,7 +99,6 @@ void	find_screen_limits(t_screen *scrn)
 			scrn->y_min = scrn->iso[i].y;
 		i ++;
 	}
-	ft_printf("\nlims: %d,%d\n", scrn->x_min, scrn->y_min);
 }
 
 void move(t_screen *scrn)
@@ -117,7 +112,7 @@ void move(t_screen *scrn)
 		scrn->iso[i].y += (0 - scrn->y_min);
 		if (scrn->iso[i].x > scrn->x_width)
 			scrn->x_width = scrn->iso[i].x;
-		if (scrn->iso[i].y < scrn->y_height)
+		if (scrn->iso[i].y > scrn->y_height)
 			scrn->y_height = scrn->iso[i].y;
 		i ++;
 	}
@@ -125,12 +120,19 @@ void move(t_screen *scrn)
 
 void scale(t_screen *scrn)
 {
-	int i;
+	int 	i;
+	float 	a; 
+	float 	b;
 
-	float a; float b;
-	a = HEIGHT/scrn->y_height;
-	b = WIDTH/scrn->x_width;
-	if (a>=b)
+	if (scrn->y_height > HEIGHT)
+		a = scrn->y_height / HEIGHT;
+	else
+		a = HEIGHT / scrn->y_height;
+	if (scrn->x_width > WIDTH)
+		b = scrn->x_width/WIDTH;
+	else
+		b = WIDTH / scrn->x_width;
+	if (a >= b)
 		scrn->scale = b;
 	else
 		scrn->scale = a;
@@ -143,13 +145,10 @@ void scale(t_screen *scrn)
 	}
 }
 
-
 void	fdf_init (t_screen *scrn)
 {
 	calc_screen_cords(scrn);
 	find_screen_limits(scrn);
 	move(scrn);
-	ft_printf("\nlims: %d,%d\n", scrn->x_min, scrn->y_min);
 	scale(scrn);
-	ft_printf("\nlims: %d,%d\n", scrn->x_width, scrn->y_height);
 }
