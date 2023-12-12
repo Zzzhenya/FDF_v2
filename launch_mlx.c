@@ -29,9 +29,11 @@ mlx_image_t	*line_helper(int x, int y, t_line *line, mlx_image_t *g_img, t_scree
 	{
 		x = line->x0; 
 		y = line->y0;
-		if (x >= scrn->z_min && y >= scrn->z_max)
+		//if (x >= scrn->x_width && y >= scrn->y_height)
+		if (x >= scrn->x_min && y >= scrn->y_min)
 		{
-			if (y <= HEIGHT - HEIGHT / 3 && x <= WIDTH - WIDTH / 5)
+			//if (y <= HEIGHT - HEIGHT / 3 && x <= WIDTH - WIDTH / 5)
+			if (y <= HEIGHT && x <= WIDTH)
 			{
 				pixelstart = &g_img->pixels[(y * g_img->width + x) \
 				* sizeof(int32_t)];
@@ -138,7 +140,7 @@ int	launch_mlx_window(t_screen	*map)
 	mlx = mlx_init (WIDTH, HEIGHT, "Wireframe", true);
 	g_img = mlx_new_image (mlx, WIDTH, HEIGHT);
 	g_img = draw_image (map, g_img, 0, 0);
-	mlx_image_to_window (mlx, g_img, WIDTH / 5, HEIGHT / 3);
+	mlx_image_to_window (mlx, g_img, 0, 0);
 	mlx_loop (mlx);
 	mlx_delete_image (mlx, g_img);
 	ft_printf ("... fdf closed. See you tomorrow!\n");

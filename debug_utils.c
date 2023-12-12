@@ -97,7 +97,8 @@ void free_screen(t_screen *scrn)
 	scrn->b = 0;
 	scrn->x_max = 0;
 	scrn->y_max = 0;
-	scrn->z_max = 0;
+	scrn->x_width = 0;
+	scrn->y_height = 0;
 	free (scrn);
 	scrn = NULL;
 }
@@ -108,8 +109,8 @@ void print_screen_details(t_screen *scrn)
 	printf("beta: %f\n", scrn->b);
 	ft_printf("x_max :%d\n", scrn->x_max);
 	ft_printf("y_max :%d\n", scrn->y_max);
-	ft_printf("z_max :%d\n", scrn->z_max);
-	ft_printf("z_min :%d\n", scrn->z_max);
+	ft_printf("ymin :%d\n", scrn->y_min);
+	ft_printf("xmin :%d\n", scrn->x_min);
 	if (scrn->cord)
 		print_t_cord(scrn);
 	if (scrn->iso)

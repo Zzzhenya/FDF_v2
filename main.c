@@ -21,8 +21,10 @@ t_screen	*init_screen(t_screen	*scrn)
 	scrn->b = 35.264 * M_PI / 180;
 	scrn->x_max = 0;
 	scrn->y_max = 0;
-	scrn->z_max = 0;
-	scrn->z_min = 0;
+	scrn->y_height = 0;
+	scrn->x_width = 0;
+	scrn->y_min = 0;
+	scrn->x_min = 0;
 	scrn->scale = 20;
 	scrn->iso = NULL;
 	scrn->cord = NULL;
