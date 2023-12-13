@@ -50,7 +50,7 @@ void	check_for_shape(int fd, t_screen *scrn)
 		while (arr[cols])
 			cols ++;
 		free_arr (arr);
-		if (cols < (scrn->x_max || cols > scrn->x_max))
+		if (cols < scrn->x_max || cols > scrn->x_max)
 			err = 1;
 		line = get_next_line(fd);
 	}
