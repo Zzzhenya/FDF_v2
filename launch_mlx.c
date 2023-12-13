@@ -129,6 +129,16 @@ mlx_image_t	*draw_image(t_screen *scrn, mlx_image_t *g_img, int i, int j)
 	return (g_img);
 }
 
+void my_keyhook(mlx_key_data_t keydata, void* param)
+{
+	// If we PRESS the 'J' key, print "Hello".
+	(void)param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
+		exit(1);
+	}
+}
+
 int	launch_mlx_window(t_screen	*map)
 {
 	mlx_t		*mlx;
@@ -155,6 +165,7 @@ int	launch_mlx_window(t_screen	*map)
 		mlx_terminate (mlx);
 		return (-1);
 	}
+	mlx_key_hook(mlx, &my_keyhook, NULL);
 	mlx_loop (mlx);
 	mlx_delete_image (mlx, g_img);
 	ft_printf ("... fdf closed.\n");
