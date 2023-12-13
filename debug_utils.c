@@ -82,23 +82,18 @@ void free_vert(t_vert *iso)
 
 void free_screen(t_screen *scrn)
 {
-	/*
-	if (scrn->cord)
-	{
-		//free_coord(scrn->cord);
-		//scrn->cord = NULL;
-	}
-	if (scrn->iso)
-	{
-		//free_vert(scrn->iso);
-		//scrn->iso = NULL;
-	}*/
 	scrn->a = 0;
 	scrn->b = 0;
+	scrn->c = 0;
 	scrn->x_max = 0;
 	scrn->y_max = 0;
+	scrn->x_min = 0;
+	scrn->y_min = 0;
+	scrn->scale = 0;
 	scrn->x_width = 0;
 	scrn->y_height = 0;
+	scrn->iso = NULL;
+	scrn->cord = NULL;
 	free (scrn);
 	scrn = NULL;
 }
@@ -122,8 +117,6 @@ void	print_t_vert(t_screen *map)
 	int i;
 
 	i = 0;
-	//if (!map->cord)
-	//	return ;
 	while (i < map->x_max * map->y_max)
 	{
 		printf ("vert: %d,(%f,%f,%f)\n", i,
