@@ -124,14 +124,14 @@ void scale(t_screen *scrn)
 	float 	a; 
 	float 	b;
 
-	if (scrn->y_height > HEIGHT)
-		a = scrn->y_height / HEIGHT;
+	if (scrn->y_height >= HEIGHT)
+		a = scrn->y_height - 1 / HEIGHT;
 	else
-		a = HEIGHT / scrn->y_height;
-	if (scrn->x_width > WIDTH)
-		b = scrn->x_width / WIDTH;
+		a = HEIGHT / scrn->y_height -1;
+	if (scrn->x_width-1 >= WIDTH)
+		b = scrn->x_width-1 / WIDTH;
 	else
-		b = WIDTH / scrn->x_width;
+		b = WIDTH / scrn->x_width-1;
 	if (a >= b)
 		scrn->scale = b;
 	else
