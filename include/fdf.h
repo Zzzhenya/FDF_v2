@@ -19,8 +19,8 @@
 # include <math.h>
 # include <stdlib.h>
 
-# define WIDTH 600
-# define HEIGHT 400	
+# define WIDTH 1024
+# define HEIGHT 640	
 
 typedef struct s_line
 {
@@ -58,7 +58,7 @@ typedef struct s_screen
 	float			x_width;
 	float			x_min;
 	float			y_min;
-	int			scale;
+	float			scale;
 	float		a;
 	float		b;
 	float		c;
