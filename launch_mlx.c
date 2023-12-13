@@ -135,12 +135,31 @@ int	launch_mlx_window(t_screen	*map)
 	mlx_image_t	*g_img;
 
 	mlx = mlx_init (WIDTH, HEIGHT, "Wireframe", true);
+	if (!mlx)
+		return(-1);
 	g_img = mlx_new_image (mlx, WIDTH, HEIGHT);
+	if (!g_img)
+	{
+		mlx_terminate (mlx);
+		return (-1);
+	}
 	g_img = draw_image (map, g_img, 0, 0);
-	mlx_image_to_window (mlx, g_img, 0, 0);
+	if (!g_img)
+	{
+		mlx_terminate (mlx);
+		return (-1);
+	}
+	if (mlx_image_to_window (mlx, g_img, 0, 0) < 0)
+	{
+		mlx_delete_image (mlx, g_img);
+		mlx_terminate (mlx);
+		return (-1);
+	}
 	mlx_loop (mlx);
 	mlx_delete_image (mlx, g_img);
 	ft_printf ("... fdf closed.\n");
 	mlx_terminate (mlx);
+	mlx = NULL;
+	g_img = NULL;
 	return (0);
 }
