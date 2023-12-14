@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include <stdio.h>
+
 /*
 void	free_stuff(t_screen *scrn)
 {
