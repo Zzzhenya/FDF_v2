@@ -34,6 +34,8 @@ typedef struct s_line
 	int			sy;
 	int			e;
 	int			e2;
+	int x;
+	int y;
 }				t_line;
 
 typedef struct s_vert

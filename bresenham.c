@@ -8,23 +8,25 @@ void	make_pixel(uint8_t *pixel, uint32_t color)
 	*(pixel++) = (uint8_t)(color & 0xFF);
 }
 
-mlx_image_t	*line_helper(int x, int y, t_line *line, mlx_image_t *g_img, t_screen *scrn)
+static void	consider_pixel(t_screen *scrn, int x, int y, mlx_image_t *g_img)
 {
 	uint8_t	*pixelstart;
+	int		size;
 
+	size = (line->y0 * g_img->width + line->x0);
+	pixelstart = &g_img->pixels[size * sizeof(int32_t)];
+	if (x >= scrn->x_min && y >= scrn->y_min)
+	{
+		if (y <= HEIGHT && x <= WIDTH)
+			make_pixel (pixelstart, 0xFADD8E6);
+	}
+}
+
+mlx_image_t	*line_helper(t_line *line, mlx_image_t *g_img, t_screen *scrn)
+{
 	while (1)
 	{
-		x = line->x0; 
-		y = line->y0;
-		if (x >= scrn->x_min && y >= scrn->y_min)
-		{
-			if (y <= HEIGHT && x <= WIDTH)
-			{
-				pixelstart = &g_img->pixels[(y * g_img->width + x) \
-				* sizeof(int32_t)];
-				make_pixel (pixelstart, 0xFADD8E6);
-			}
-		}
+		consider_pixel(scrn, line->x0, line->y0, g_img);
 		if (line->x0 == line->x1 && line->y0 == line->y1)
 			break ;
 		line->e2 = line->e * 2;
@@ -49,11 +51,6 @@ mlx_image_t	*line_helper(int x, int y, t_line *line, mlx_image_t *g_img, t_scree
 /* Bresenham's Line Algorithm */
 mlx_image_t	*draw_line(t_line *line, mlx_image_t *g_img, t_screen *scrn)
 {
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
 	line->dx = abs (line->x1 - line->x0);
 	if (line->x0 < line->x1)
 		line->sx = 1;
@@ -65,6 +62,6 @@ mlx_image_t	*draw_line(t_line *line, mlx_image_t *g_img, t_screen *scrn)
 	else
 		line->sy = -1;
 	line->e = line->dx + line->dy;
-	g_img = line_helper (x, y, line, g_img, scrn);
+	g_img = line_helper (line, g_img, scrn);
 	return (g_img);
 }
