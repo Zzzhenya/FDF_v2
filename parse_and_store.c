@@ -73,7 +73,7 @@ void	parse_and_store(t_screen *scrn, char *name)
 	int	fd;
 	int	ret;
 
-	ret = ft_parse(name, scrn); 
+	ret = ft_parse(name, scrn);
 	if (ret > 0)
 	{
 		free_screen(scrn);
