@@ -36,16 +36,14 @@ static void	set_values(t_line *line, t_screen *scrn, int i, int j)
 
 mlx_image_t	*draw_image(t_screen *scrn, mlx_image_t *g_img, int i, int j)
 {
-	t_line	line;
-
-	make_line_zero(&line);
+	make_line_zero(&scrn->line);
 	while (i < (scrn->x_max * scrn->y_max))
 	{
 		j = i + 1;
 		if (j % scrn->x_max)
 		{
-			set_values (&line, scrn, i, j);
-			g_img = draw_line(&line, g_img, scrn);
+			set_values (&scrn->line, scrn, i, j);
+			g_img = draw_line(&scrn->line, g_img, scrn);
 		}
 		i ++;
 	}
@@ -53,8 +51,8 @@ mlx_image_t	*draw_image(t_screen *scrn, mlx_image_t *g_img, int i, int j)
 	while (i < (scrn->x_max * scrn->y_max) - scrn->x_max)
 	{
 		j = i + scrn->x_max;
-		set_values (&line, scrn, i, j);
-		g_img = draw_line(&line, g_img, scrn);
+		set_values (&scrn->line, scrn, i, j);
+		g_img = draw_line(&scrn->line, g_img, scrn);
 		i ++;
 	}
 	return (g_img);
@@ -67,7 +65,7 @@ int	launch_mlx_window(t_screen	*map)
 
 	mlx = mlx_init (WIDTH, HEIGHT, "Wireframe", true);
 	if (!mlx)
-		return(-1);
+		return (-1);
 	g_img = mlx_new_image (mlx, WIDTH, HEIGHT);
 	if (!g_img)
 	{
@@ -75,11 +73,6 @@ int	launch_mlx_window(t_screen	*map)
 		return (-1);
 	}
 	g_img = draw_image (map, g_img, 0, 0);
-	if (!g_img)
-	{
-		mlx_terminate (mlx);
-		return (-1);
-	}
 	if (mlx_image_to_window (mlx, g_img, 0, 0) < 0)
 	{
 		mlx_delete_image (mlx, g_img);
@@ -91,7 +84,5 @@ int	launch_mlx_window(t_screen	*map)
 	mlx_delete_image (mlx, g_img);
 	ft_printf ("... fdf closed.\n");
 	mlx_terminate (mlx);
-	mlx = NULL;
-	g_img = NULL;
 	return (0);
 }

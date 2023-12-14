@@ -1,13 +1,5 @@
 #include "fdf.h"
 
-void	make_pixel(uint8_t *pixel, uint32_t color)
-{
-	*(pixel++) = (uint8_t)(color >> 24);
-	*(pixel++) = (uint8_t)(color >> 16);
-	*(pixel++) = (uint8_t)(color >> 8);
-	*(pixel++) = (uint8_t)(color & 0xFF);
-}
-
 void	print_t_vert(t_screen *map)
 {
 	int	i;
