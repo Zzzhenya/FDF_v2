@@ -71,11 +71,7 @@ typedef struct s_screen
 void	free_coord(t_cord	*cord);
 void	free_vert(t_vert *iso);
 void	free_screen(t_screen *scrn);
-void	print_screen_details(t_screen *scrn);
 void	free_arr(char **arr);
-void	print_t_cord(t_screen *map);
-void	print_t_vert(t_screen *map);
-//void 	clear_3d_cords(t_screen  *map);
 
 /* parse_and_store.c */
 
@@ -94,5 +90,10 @@ void	fdf_init(t_screen *scrn);
 /* launc_mlx.c */
 
 int		launch_mlx_window(t_screen	*map);
+
+/* print.c */
+void	print_t_cord(t_screen *map);
+void	print_t_vert(t_screen *map);
+void	print_screen_details(t_screen *scrn);
 
 #endif
