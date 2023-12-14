@@ -96,4 +96,12 @@ void	print_t_cord(t_screen *map);
 void	print_t_vert(t_screen *map);
 void	print_screen_details(t_screen *scrn);
 
+/* bresenham.c */
+void	make_pixel(uint8_t *pixel, uint32_t color);
+mlx_image_t	*line_helper(int x, int y, t_line *line, mlx_image_t *g_img, t_screen *scrn);
+mlx_image_t	*draw_line(t_line *line, mlx_image_t *g_img, t_screen *scrn);
+
+/* hooks.c */
+void my_keyhook(mlx_key_data_t keydata, void* param)
+
 #endif
