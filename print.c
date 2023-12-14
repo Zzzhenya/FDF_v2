@@ -1,5 +1,28 @@
 #include "fdf.h"
 
+void	make_pixel(uint8_t *pixel, uint32_t color)
+{
+	*(pixel++) = (uint8_t)(color >> 24);
+	*(pixel++) = (uint8_t)(color >> 16);
+	*(pixel++) = (uint8_t)(color >> 8);
+	*(pixel++) = (uint8_t)(color & 0xFF);
+}
+
+void	print_t_vert(t_screen *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->x_max * map->y_max)
+	{
+		ft_printf ("vert: %d,(%d,%d,%d)\n", i,
+			map->iso[i].x,
+			map->iso[i].y,
+			map->iso[i].z);
+		i ++;
+	}
+}
+
 void	print_t_cord(t_screen *map)
 {
 	int	i;
@@ -27,19 +50,4 @@ void	print_screen_details(t_screen *scrn)
 		print_t_cord(scrn);
 	if (scrn->iso)
 		print_t_vert(scrn);
-}
-
-void	print_t_vert(t_screen *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->x_max * map->y_max)
-	{
-		ft_printf ("vert: %d,(%d,%d,%d)\n", i,
-			map->iso[i].x,
-			map->iso[i].y,
-			map->iso[i].z);
-		i ++;
-	}
 }
