@@ -28,6 +28,8 @@ t_screen	*init_screen(t_screen	*scrn)
 	scrn->scale = 20;
 	scrn->iso = NULL;
 	scrn->cord = NULL;
+	scrn->mlx = NULL;
+	scrn->g_img = NULL;
 	return (scrn);
 }
 

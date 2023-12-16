@@ -10,18 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= fdf
-CFLAGS	:= -Wextra -Wall -Werror #-Wunreachable-code -Ofast -w
-LIBMLX	:= ./lib/MLX42
-LIBFT	:= libft.a
+NAME	= fdf
+CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code -g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
+LIBMLX	= ./lib/MLX42
+LIBFT	= libft.a
+CC = cc
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT)
-SRCS	:= main.c debug_utils.c parse_and_store.c \
+HEADERS	= -I ./include -I $(LIBMLX)/include
+LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -lm $(LIBFT) # -pthread -lm $(LIBFT)
+SRCS	= main.c debug_utils.c parse_and_store.c \
 			parser_utils.c fdf_init.c launch_mlx.c print.c \
 			bresenham.c hooks.c project.c
-OBJS	:= $(SRCS:.c=.o)
-GIT     := 	if !( [ -d $(LIBMLX) ]); \
+OBJS	= $(SRCS:.c=.o)
+GIT     = 	if !( [ -d $(LIBMLX) ]); \
 			then git clone https://github.com/Zzzhenya/MLX42.git $(LIBMLX); \
 			fi
 # -mmacosx-version-min=12.6
@@ -35,19 +36,20 @@ libmlx:
 
 libft:
 	@$(MAKE) -C ./lib/libft
-	@cp lib/libft/$(LIBFT) $(LIBFT)
+	@cp lib/libft/$(LIBFT) $(LIBFT) 
 	@cp lib/libft/libft.h include/libft.h
 
 %.o: %.c
-	@$(CC) -g $(CFLAGS) -o $@ -c $< $(HEADERS)
-	@echo "...Compiling: $(notdir $<)"
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	@$(CC) -g $(OBJS) $(LIBS) $(HEADERS) -o $(NAME) 
+	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@echo "...fdf compiled."
 
 clean:
 	@rm -rf $(OBJS)
 	@echo "...FDF OBJs cleaned."
+	@$(MAKE) clean -C ./lib/libft
 
 fclean: clean
 	@rm -rf $(NAME)

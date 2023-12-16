@@ -64,6 +64,8 @@ void	free_screen(t_screen *scrn)
 	scrn->y_height = 0;
 	scrn->iso = NULL;
 	scrn->cord = NULL;
+	scrn->mlx = NULL;
+	scrn->g_img = NULL;
 	free (scrn);
 	scrn = NULL;
 }
