@@ -60,29 +60,28 @@ mlx_image_t	*draw_image(t_screen *scrn, mlx_image_t *g_img, int i, int j)
 
 int	launch_mlx_window(t_screen	*map)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*g_img;
+//	mlx_t		*mlx;
+//	mlx_image_t	*g_img;
 
-	mlx = mlx_init (WIDTH, HEIGHT, "Wireframe", true);
-	if (!mlx)
+	map->mlx = mlx_init (WIDTH, HEIGHT, "Wireframe", true);
+	if (!map->mlx)
 		return (-1);
-	g_img = mlx_new_image (mlx, WIDTH, HEIGHT);
-	if (!g_img)
+	map->g_img = mlx_new_image (map->mlx, WIDTH, HEIGHT);
+	if (!map->g_img)
 	{
-		mlx_terminate (mlx);
+		mlx_terminate (map->mlx);
 		return (-1);
 	}
-	g_img = draw_image (map, g_img, 0, 0);
-	if (mlx_image_to_window (mlx, g_img, 0, 0) < 0)
+	map->g_img = draw_image (map, map->g_img, 0, 0);
+	if (mlx_image_to_window (map->mlx, map->g_img, 0, 0) < 0)
 	{
-		mlx_delete_image (mlx, g_img);
-		mlx_terminate (mlx);
+		mlx_delete_image (map->mlx, map->g_img);
+		mlx_terminate (map->mlx);
 		return (-1);
 	}
-	mlx_key_hook(mlx, &my_keyhook, NULL);
-	mlx_loop (mlx);
-	mlx_delete_image (mlx, g_img);
-	ft_printf ("... fdf closed.\n");
-	mlx_terminate (mlx);
+	mlx_key_hook(map->mlx, &my_keyhook, map);
+	mlx_loop (map->mlx);
+	mlx_delete_image (map->mlx, map->g_img);
+	mlx_terminate (map->mlx);
 	return (0);
 }
