@@ -1,10 +1,17 @@
 #include "fdf.h"
 
-void	my_keyhook(mlx_key_data_t keydata, void *param)
+void	my_keyhook(mlx_key_data_t keydata, void *map)
 {
-	(void)param;
+	t_screen *scrn;
+
+	scrn = (t_screen *)map;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
-		exit(1);
+		mlx_delete_image (scrn->mlx, scrn->g_img);
+		mlx_terminate (scrn->mlx);
+		free_coord(scrn->cord);
+		free_vert(scrn->iso);
+		free_screen (scrn);
+		exit (0);
 	}
 }
