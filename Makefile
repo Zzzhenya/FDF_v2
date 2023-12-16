@@ -11,13 +11,13 @@
 # **************************************************************************** #
 
 NAME	= fdf
-CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code -g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
+CFLAGS	= -Wextra -Wall -Werror #-g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
 LIBMLX	= ./lib/MLX42
 LIBFT	= libft.a
 CC = cc
 
 HEADERS	= -I ./include -I $(LIBMLX)/include
-LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -lm $(LIBFT) # -pthread -lm $(LIBFT)
+LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT)
 SRCS	= main.c debug_utils.c parse_and_store.c \
 			parser_utils.c fdf_init.c launch_mlx.c print.c \
 			bresenham.c hooks.c project.c
@@ -32,7 +32,7 @@ all: libmlx libft $(NAME)
 libmlx:
 	@echo "...Checking for MLX42 repo."
 	@$(GIT)
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C  $(LIBMLX)/build -j4
 
 libft:
 	@$(MAKE) -C ./lib/libft
@@ -43,7 +43,7 @@ libft:
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "...fdf compiled."
 
 clean:
@@ -57,8 +57,8 @@ fclean: clean
 	@rm -rf $(LIBMLX)/build
 	@echo "...MLX42 build files cleaned."
 	@$(MAKE) fclean -C ./lib/libft
-	@rm ./include/libft.h
 	@rm -f libft.a
+	@rm -rf ./include/libft.h
 
 re: clean all
 
