@@ -104,7 +104,7 @@ mlx_image_t	*line_helper(t_line *line, mlx_image_t *g_img, t_screen *scrn);
 mlx_image_t	*draw_line(t_line *line, mlx_image_t *g_img, t_screen *scrn);
 
 /* hooks.c */
-void	my_keyhook(mlx_key_data_t keydata, void *scrn);
+void		my_keyhook(mlx_key_data_t keydata, void *scrn);
 
 /* project.c */
 t_screen	*setup_vert(t_screen *scrn, int i);
