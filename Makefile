@@ -11,55 +11,53 @@
 # **************************************************************************** #
 
 NAME	= fdf
-CFLAGS	= -Wextra -Wall -Werror -g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
-LIBMLX	= ./lib/MLX42
-LIBFT	= libft.a
 CC = cc
-
-HEADERS	= -I ./include -I $(LIBMLX)/include
-LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT)
+CFLAGS	= -Wextra -Wall -Werror -g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
+LIBMLXDIR	= ./lib/MLX42
+LIBMLX = $(LIBMLXDIR)/build/libmlx42.a
+LIBFTDIR = ./lib/libft
+LIBFT	= $(LIBFTDIR)/libft.a
+RM = rm -rf
+HEADERS	= -I ./include -I $(LIBMLXDIR)/include -I $(LIBFTDIR)
+LIBS	= $(LIBMLX) -ldl -lglfw -pthread -lm $(LIBFT)
 SRCS	= main.c debug_utils.c parse_and_store.c \
 			parser_utils.c fdf_init.c launch_mlx.c print.c \
 			bresenham.c hooks.c project.c
 OBJS	= $(SRCS:.c=.o)
-GIT     = 	if !( [ -d $(LIBMLX) ]); \
-			then git clone https://github.com/Zzzhenya/MLX42.git $(LIBMLX); \
+GIT     = 	if !( [ -d $(LIBMLXDIR) ]); \
+			then git clone https://github.com/Zzzhenya/MLX42.git $(LIBMLXDIR); \
 			fi
 # -mmacosx-version-min=12.6
 
-all: libmlx libft $(NAME)
+all: $(NAME)
 
-libmlx:
+$(LIBMLX):
 	@echo "...Checking for MLX42 repo."
 	@$(GIT)
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C  $(LIBMLX)/build -j4
+	@cmake $(LIBMLXDIR) -B $(LIBMLXDIR)/build && make -C  $(LIBMLXDIR)/build -j4
 
-libft:
-	@$(MAKE) -C ./lib/libft
-	@cp lib/libft/$(LIBFT) $(LIBFT) 
-	@cp lib/libft/libft.h include/libft.h
+$(LIBFT):
+	@$(MAKE) -C $(LIBFTDIR)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
-$(NAME): $(OBJS)
+$(NAME): $(LIBMLX) $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "...fdf compiled."
 
 clean:
-	@rm -rf $(OBJS)
+	@$(RM) $(OBJS)
 	@echo "...FDF OBJs cleaned."
-	@$(MAKE) clean -C ./lib/libft
+	@$(MAKE) clean -C $(LIBFTDIR) 
 
 fclean: clean
-	@rm -rf $(NAME)
+	@$(RM) $(NAME)
 	@echo "...FDF binary cleaned."
-	@rm -rf $(LIBMLX)/build
+	@$(RM) $(LIBMLXDIR)/build
 	@echo "...MLX42 build files cleaned."
-	@$(MAKE) fclean -C ./lib/libft
-	@rm -f libft.a
-	@rm -rf ./include/libft.h
+	@$(MAKE) fclean -C $(LIBFTDIR)
 
-re: clean all
+re: fclean all
 
 .PHONY: all, clean, fclean, re
