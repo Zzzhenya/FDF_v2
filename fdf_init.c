@@ -28,15 +28,10 @@ void	calc_screen_cords(t_screen *scrn, int type)
 	{
 		scrn = setup_vert (scrn, i);
 		if (type == 2)
-		{
 			scrn = rot_on_z (scrn, i, scrn->b);
-			scrn = rot_on_x (scrn, i, scrn->a);
-		}
 		else
-		{
 			scrn = rot_on_y (scrn, i, scrn->b);
-			scrn = rot_on_x (scrn, i, scrn->a);
-		}
+		scrn = rot_on_x (scrn, i, scrn->a);
 		scrn = ortho (scrn, i);
 		scrn->iso[i].z = fabsf (scrn->iso[i].z);
 		i ++;
@@ -73,6 +68,8 @@ void	move(t_screen *scrn)
 			scrn->y_height = scrn->iso[i].y;
 		i ++;
 	}
+	scrn->x_min = 0;
+	scrn->y_min = 0;
 }
 
 void	scale(t_screen *scrn)
