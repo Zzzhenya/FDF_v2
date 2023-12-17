@@ -30,7 +30,7 @@ static void	consider_pixel(t_screen *scrn, int x, int y, mlx_image_t *g_img)
 	if (x >= scrn->x_min && y >= scrn->y_min)
 	{
 		if (y <= HEIGHT && x <= WIDTH)
-			make_pixel (pixelstart, 0xFADD8E6);
+			make_pixel (pixelstart, 0xFFFFFFFF);
 	}
 }
 
