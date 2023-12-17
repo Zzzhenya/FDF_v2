@@ -11,19 +11,31 @@
 # **************************************************************************** #
 
 NAME	= fdf
+
 CC = cc
+
 CFLAGS	= -Wextra -Wall -Werror #-g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
+
 LIBMLXDIR	= ./lib/MLX42
+
 LIBMLX = $(LIBMLXDIR)/build/libmlx42.a
+
 LIBFTDIR = ./lib/libft
+
 LIBFT	= $(LIBFTDIR)/libft.a
+
 RM = rm -rf
+
 HEADERS	= -I ./include -I $(LIBMLXDIR)/include -I $(LIBFTDIR)
+
 LIBS	= $(LIBMLX) -ldl -lglfw -pthread -lm $(LIBFT)
+
 SRCS	= main.c debug_utils.c parse_and_store.c \
 			parser_utils.c fdf_init.c launch_mlx.c print.c \
 			bresenham.c hooks.c project.c
+
 OBJS	= $(SRCS:.c=.o)
+
 GIT     = 	if !( [ -d $(LIBMLXDIR) ]); \
 			then git clone https://github.com/Zzzhenya/MLX42.git $(LIBMLXDIR); \
 			fi
