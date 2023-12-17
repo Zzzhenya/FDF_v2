@@ -12,18 +12,21 @@
 
 #include "fdf.h"
 
+static void	remove_stuff_exit(t_screen *scrn)
+{
+	mlx_delete_image (scrn->mlx, scrn->g_img);
+	mlx_terminate (scrn->mlx);
+	free_coord(scrn->cord);
+	free_vert(scrn->iso);
+	free_screen (scrn);
+	exit (0);
+}
+
 void	my_keyhook(mlx_key_data_t keydata, void *map)
 {
 	t_screen	*scrn;
 
 	scrn = (t_screen *)map;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-	{
-		mlx_delete_image (scrn->mlx, scrn->g_img);
-		mlx_terminate (scrn->mlx);
-		free_coord(scrn->cord);
-		free_vert(scrn->iso);
-		free_screen (scrn);
-		exit (0);
-	}
+		remove_stuff_exit(scrn);
 }
