@@ -88,10 +88,11 @@ void		get_map_dims(int fd, t_screen *scrn, int i);
 /* fdf_init.c */
 
 void		fdf_init(t_screen *scrn);
+void		find_screen_limits(t_screen *scrn);
 
 /* launc_mlx.c */
 
-int			launch_mlx_window(t_screen	*map);
+int			launch_mlx_window(t_screen	*map, char *file_name);
 
 /* print.c */
 void		print_t_cord(t_screen *map);
@@ -102,6 +103,7 @@ void		print_screen_details(t_screen *scrn);
 void		make_pixel(uint8_t *pixel, uint32_t color);
 mlx_image_t	*line_helper(t_line *line, mlx_image_t *g_img, t_screen *scrn);
 mlx_image_t	*draw_line(t_line *line, mlx_image_t *g_img, t_screen *scrn);
+mlx_image_t	*draw_image(t_screen *scrn, mlx_image_t *g_img, int i, int j);
 
 /* hooks.c */
 void		my_keyhook(mlx_key_data_t keydata, void *scrn);
