@@ -58,9 +58,9 @@ mlx_image_t	*draw_image(t_screen *scrn, mlx_image_t *g_img, int i, int j)
 	return (g_img);
 }
 
-int	launch_mlx_window(t_screen	*map)
+int	launch_mlx_window(t_screen	*map, char *file_name)
 {
-	map->mlx = mlx_init (WIDTH, HEIGHT, "Wireframe", true);
+	map->mlx = mlx_init (WIDTH, HEIGHT, file_name, true);
 	if (!map->mlx)
 		return (-1);
 	map->g_img = mlx_new_image (map->mlx, WIDTH, HEIGHT);
