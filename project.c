@@ -68,7 +68,7 @@ t_screen	*rot_on_x(t_screen *scrn, int i, float a)
 t_screen	*ortho(t_screen *scrn, int i)
 {
 	scrn->iso[i].x = scrn->iso[i].x * 1;
-	scrn->iso[i].y = scrn->iso[i].y * -1;
+	scrn->iso[i].y = scrn->iso[i].y * 1;
 	scrn->iso[i].z = scrn->iso[i].z * 0;
 	return (scrn);
 }

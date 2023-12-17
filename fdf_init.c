@@ -27,7 +27,7 @@ void	calc_screen_cords(t_screen *scrn)
 	while (i < (scrn->y_max * scrn->x_max))
 	{
 		scrn = setup_vert (scrn, i);
-		scrn = rot_on_z (scrn, i, scrn->b);
+		scrn = rot_on_y (scrn, i, scrn->b);
 		scrn = rot_on_x (scrn, i, scrn->a);
 		scrn = ortho (scrn, i);
 		scrn->iso[i].z = fabsf (scrn->iso[i].z);
