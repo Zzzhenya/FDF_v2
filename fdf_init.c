@@ -28,9 +28,9 @@ void	calc_screen_cords(t_screen *scrn, int type)
 	{
 		scrn = setup_vert (scrn, i);
 		if (type == 2)
-			scrn = rot_on_z (scrn, i, scrn->b);
-		else
 			scrn = rot_on_y (scrn, i, scrn->b);
+		else
+			scrn = rot_on_z (scrn, i, scrn->b);
 		scrn = rot_on_x (scrn, i, scrn->a);
 		scrn = ortho (scrn, i);
 		scrn->iso[i].z = fabsf (scrn->iso[i].z);
@@ -62,9 +62,9 @@ void	move(t_screen *scrn)
 	{
 		scrn->iso[i].x += (0 - scrn->x_min);
 		scrn->iso[i].y += (0 - scrn->y_min);
-		if (scrn->iso[i].x > scrn->x_width)
+		if (scrn->iso[i].x >= scrn->x_width)
 			scrn->x_width = scrn->iso[i].x;
-		if (scrn->iso[i].y > scrn->y_height)
+		if (scrn->iso[i].y >= scrn->y_height)
 			scrn->y_height = scrn->iso[i].y;
 		i ++;
 	}
@@ -78,11 +78,11 @@ void	scale(t_screen *scrn)
 	float	a;
 	float	b;
 
-	if (scrn->y_height >= HEIGHT)
+	if (scrn->y_height > HEIGHT)
 		a = scrn->y_height - 1 / HEIGHT;
 	else
 		a = HEIGHT / scrn->y_height - 1;
-	if (scrn->x_width - 1 >= WIDTH)
+	if (scrn->x_width - 1 > WIDTH)
 		b = scrn->x_width - 1 / WIDTH;
 	else
 		b = WIDTH / scrn->x_width - 1;

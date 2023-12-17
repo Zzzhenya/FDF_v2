@@ -24,14 +24,14 @@ static void	remove_stuff_exit(t_screen *scrn, int code)
 
 void	new_projection(t_screen *scrn, keys_t key)
 {
-	if (key == MLX_KEY_Z || key == MLX_KEY_Y)
+	if (key == MLX_KEY_Z || key == MLX_KEY_Y || key == MLX_KEY_M)
 	{
 		mlx_delete_image (scrn->mlx, scrn->g_img);
 		free_vert(scrn->iso);
 		if (key == MLX_KEY_Z)
-			fdf_init(scrn, 2);
+			fdf_init (scrn, 1);
 		else if (key == MLX_KEY_Y)
-			fdf_init(scrn, 1);
+			fdf_init (scrn, 2);
 		scrn->g_img = mlx_new_image (scrn->mlx, WIDTH, HEIGHT);
 		if (!scrn->g_img)
 		{
