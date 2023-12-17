@@ -48,7 +48,6 @@ int	main(int argc, char **argv)
 		ft_errexit("t_screen init error");
 	parse_and_store (scrn, argv[1]);
 	fdf_init (scrn);
-	print_t_cord(scrn);
 	launch_mlx_window(scrn);
 	free_coord(scrn->cord);
 	free_vert(scrn->iso);
