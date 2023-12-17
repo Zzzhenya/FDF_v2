@@ -12,7 +12,7 @@
 
 NAME	= fdf
 CC = cc
-CFLAGS	= -Wextra -Wall -Werror -g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
+CFLAGS	= -Wextra -Wall -Werror #-g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
 LIBMLXDIR	= ./lib/MLX42
 LIBMLX = $(LIBMLXDIR)/build/libmlx42.a
 LIBFTDIR = ./lib/libft
