@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME	= fdf
-CFLAGS	= -Wextra -Wall -Werror #-g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
+CFLAGS	= -Wextra -Wall -Werror -g -fsanitize=address # -v #-Wunreachable-code -Ofast -w
 LIBMLX	= ./lib/MLX42
 LIBFT	= libft.a
 CC = cc
