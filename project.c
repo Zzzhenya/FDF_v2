@@ -29,9 +29,9 @@ t_screen	*rot_on_y(t_screen *scrn, int i, float b)
 	x = scrn->iso[i].x;
 	y = scrn->iso[i].y;
 	z = scrn->iso[i].z;
-	scrn->iso[i].x = x * cosf(b) - z * sinf(b);
+	scrn->iso[i].x = x * cos(b) - z * sin(b);
 	scrn->iso[i].y = y;
-	scrn->iso[i].z = x * sinf(b) + z * cosf(b);
+	scrn->iso[i].z = x * sin(b) + z * cos(b);
 	return (scrn);
 }
 
@@ -44,9 +44,9 @@ t_screen	*rot_on_z(t_screen *scrn, int i, float b)
 	x = scrn->iso[i].x;
 	y = scrn->iso[i].y;
 	z = scrn->iso[i].z;
-	scrn->iso[i].x = x * cosf(b) - y * sinf(b);
+	scrn->iso[i].x = x * cos(b) - y * sin(b);
 	scrn->iso[i].z = z;
-	scrn->iso[i].y = x * sinf(b) + y * cosf(b);
+	scrn->iso[i].y = x * sin(b) + y * cos(b);
 	return (scrn);
 }
 
@@ -60,8 +60,8 @@ t_screen	*rot_on_x(t_screen *scrn, int i, float a)
 	y = scrn->iso[i].y;
 	z = scrn->iso[i].z;
 	scrn->iso[i].x = x;
-	scrn->iso[i].y = y * cosf(a) + z * sinf(a);
-	scrn->iso[i].z = z * cosf(a) - y * sinf(a);
+	scrn->iso[i].y = y * cos(a) + z * sin(a);
+	scrn->iso[i].z = z * cos(a) - y * sin(a);
 	return (scrn);
 }
 
