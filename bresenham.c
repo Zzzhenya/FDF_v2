@@ -27,7 +27,7 @@ static void	consider_pixel(t_screen *scrn, int x, int y, mlx_image_t *g_img)
 
 	size = (scrn->line.y0 * g_img->width + scrn->line.x0);
 	pixelstart = &g_img->pixels[size * sizeof(int32_t)];
-	if (x >= scrn->x_min && y >= scrn->y_min)
+	if (x >= 0 && y >= 0)
 	{
 		if (y <= HEIGHT && x <= WIDTH)
 			make_pixel (pixelstart, 0xFFFFFFFF);

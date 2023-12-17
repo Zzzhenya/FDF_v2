@@ -87,7 +87,7 @@ void		get_map_dims(int fd, t_screen *scrn, int i);
 
 /* fdf_init.c */
 
-void		fdf_init(t_screen *scrn);
+void		fdf_init(t_screen *scrn, int type);
 void		find_screen_limits(t_screen *scrn);
 
 /* launc_mlx.c */
