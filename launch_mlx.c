@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   launch_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-silv <sde-silv@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:34:40 by sde-silv          #+#    #+#             */
 /*   Updated: 2023/12/11 19:34:42 by sde-silv         ###   ########.fr       */

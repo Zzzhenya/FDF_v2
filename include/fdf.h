@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-silv <sde-silv@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:30:56 by sde-silv          #+#    #+#             */
 /*   Updated: 2023/12/11 19:30:59 by sde-silv         ###   ########.fr       */
@@ -60,7 +60,6 @@ typedef struct s_screen
 	float		scale;
 	float		a;
 	float		b;
-	float		c;
 	t_line		line;
 	t_cord		*cord;
 	t_vert		*iso;

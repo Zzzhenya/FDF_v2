@@ -24,7 +24,7 @@ static void	remove_stuff_exit(t_screen *scrn, int code)
 
 void	new_projection(t_screen *scrn, keys_t key)
 {
-	if (key == MLX_KEY_Z || key == MLX_KEY_Y || key == MLX_KEY_M)
+	if (key == MLX_KEY_Z || key == MLX_KEY_Y)
 	{
 		mlx_delete_image (scrn->mlx, scrn->g_img);
 		free_vert(scrn->iso);

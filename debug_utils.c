@@ -54,7 +54,6 @@ void	free_screen(t_screen *scrn)
 {
 	scrn->a = 0;
 	scrn->b = 0;
-	scrn->c = 0;
 	scrn->x_max = 0;
 	scrn->y_max = 0;
 	scrn->x_min = 0;
