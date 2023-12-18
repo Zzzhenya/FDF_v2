@@ -27,6 +27,18 @@ void	print_t_vert(t_screen *map)
 	}
 }
 
+void	print_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		ft_printf ("%d :%s\n", i, arr[i]);
+		i ++;
+	}
+}
+
 void	print_t_cord(t_screen *map)
 {
 	int	i;

@@ -98,6 +98,7 @@ int			launch_mlx_window(t_screen	*map, char *file_name);
 void		print_t_cord(t_screen *map);
 void		print_t_vert(t_screen *map);
 void		print_screen_details(t_screen *scrn);
+void		print_arr(char **arr);
 
 /* bresenham.c */
 void		make_pixel(uint8_t *pixel, uint32_t color);

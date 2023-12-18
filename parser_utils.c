@@ -57,20 +57,8 @@ void	check_for_shape(int fd, t_screen *scrn)
 	if (err > 0)
 	{
 		close(fd);
-		free (scrn);
+		free_screen(scrn);
 		ft_errexit("Map is not a rectangle.");
-	}
-}
-
-void	print_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		ft_printf ("%d :%s\n", i, arr[i]);
-		i ++;
 	}
 }
 
