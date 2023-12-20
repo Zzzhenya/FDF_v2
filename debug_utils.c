@@ -23,16 +23,15 @@ void	clear_3d_cords(t_screen *map)
 }
 
 /*Free array when parsing fails*/
-void	free_arr(char **arr, int cols)
+void	free_arr(char **arr)
 {
 	int	i;
 
 	i = 0;
-	while (cols < i)
+	while (arr[i])
 	{
 		free (arr[i]);
 		arr[i] = NULL;
-		cols --;
 		i ++;
 	}
 	free (arr);
