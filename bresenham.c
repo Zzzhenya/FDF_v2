@@ -25,12 +25,15 @@ static void	consider_pixel(t_screen *scrn, int x, int y, mlx_image_t *g_img)
 	uint8_t	*pixelstart;
 	int		size;
 
-	size = (scrn->line.y0 * g_img->width + scrn->line.x0);
-	pixelstart = &g_img->pixels[size * sizeof(int32_t)];
-	if (x >= 0 && y >= 0)
+	pixelstart = NULL;
+	size = round(scrn->line.y0 * g_img->width + scrn->line.x0);
+	if (round(x) >= 0 && round(y) >= 0 && size < HEIGHT * WIDTH)
 	{
-		if (y <= HEIGHT && x <= WIDTH)
+		if (round(y) <= HEIGHT && round(x) <= WIDTH)
+		{
+			pixelstart = &g_img->pixels[size * sizeof(int32_t)];
 			make_pixel (pixelstart, 0xFFFFFFFF);
+		}
 	}
 }
 
