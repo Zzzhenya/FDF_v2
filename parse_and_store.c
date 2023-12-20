@@ -31,7 +31,7 @@ void	store_3d_cords(t_screen *scrn, int fd, int i, int rows)
 	while (rows < scrn->y_max)
 	{
 		line = get_next_line(fd);
-		arr = ft_split(line, ' ');
+		arr = ft_splitbyspace(line);
 		free (line);
 		cols = 0;
 		while (cols < scrn->x_max)
