@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	calc_screen_cords(t_screen *scrn, int type)
+void	calc_screen_cords(t_screen *scrn)
 {
 	int	i;
 
@@ -27,10 +27,7 @@ void	calc_screen_cords(t_screen *scrn, int type)
 	while (i < (scrn->y_max * scrn->x_max))
 	{
 		scrn = setup_vert (scrn, i);
-		if (type == 2)
-			scrn = rot_on_y (scrn, i, scrn->b);
-		else
-			scrn = rot_on_z (scrn, i, scrn->b);
+		scrn = rot_on_z (scrn, i, scrn->b);
 		scrn = rot_on_x (scrn, i, scrn->a);
 		scrn = ortho (scrn, i);
 		scrn->iso[i].z = fabsf (scrn->iso[i].z);
@@ -87,9 +84,9 @@ void	scale(t_screen *scrn)
 	else
 		b = WIDTH / scrn->x_width;
 	if (a >= b)
-		scrn->scale = b - 0.1;
+		scrn->scale = b;
 	else
-		scrn->scale = a - 0.1;
+		scrn->scale = a;
 	i = 0;
 	while (i < (scrn->y_max * scrn->x_max))
 	{
@@ -99,9 +96,9 @@ void	scale(t_screen *scrn)
 	}
 }
 
-void	fdf_init(t_screen *scrn, int type)
+void	fdf_init(t_screen *scrn)
 {
-	calc_screen_cords(scrn, type);
+	calc_screen_cords(scrn);
 	find_screen_limits(scrn);
 	move(scrn);
 	scale(scrn);
