@@ -44,7 +44,7 @@ void	check_for_shape(int fd, t_screen *scrn)
 	line = get_next_line(fd);
 	while (line)
 	{
-		arr = ft_split(line, ' ');
+		arr = ft_splitbyspace(line);
 		free (line);
 		cols = 0;
 		while (arr[cols])
@@ -74,7 +74,7 @@ void	get_map_dims(int fd, t_screen *scrn, int i)
 		free (scrn);
 		ft_errexit ("Empty map");
 	}
-	arr = ft_split(line, ' ');
+	arr = ft_splitbyspace(line);
 	while (arr[i])
 		i ++;
 	scrn->x_max = i;
