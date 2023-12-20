@@ -72,7 +72,7 @@ typedef struct s_screen
 void		free_coord(t_cord	*cord);
 void		free_vert(t_vert *iso);
 void		free_screen(t_screen *scrn);
-void		free_arr(char **arr, int cols);
+void		free_arr(char **arr, int cols)
 
 /* parse_and_store.c */
 
