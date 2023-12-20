@@ -42,7 +42,7 @@ void	store_3d_cords(t_screen *scrn, int fd, int i, int rows)
 			cols ++;
 			i ++;
 		}
-		free_arr(arr);
+		free_arr (arr, cols);
 		rows ++;
 	}
 }

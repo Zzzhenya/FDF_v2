@@ -49,7 +49,7 @@ void	check_for_shape(int fd, t_screen *scrn)
 		cols = 0;
 		while (arr[cols])
 			cols ++;
-		free_arr (arr);
+		free_arr (arr, cols);
 		if (cols < scrn->x_max || cols > scrn->x_max)
 			err = 1;
 		line = get_next_line(fd);
@@ -78,7 +78,7 @@ void	get_map_dims(int fd, t_screen *scrn, int i)
 	while (arr[i])
 		i ++;
 	scrn->x_max = i;
-	free_arr (arr);
+	free_arr (arr, i);
 	i = 0;
 	while (line)
 	{
