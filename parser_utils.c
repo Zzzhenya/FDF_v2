@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:26:21 by sde-silv          #+#    #+#             */
-/*   Updated: 2023/12/11 18:26:33 by sde-silv         ###   ########.fr       */
+/*   Updated: 2023/12/21 01:37:47 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ int	ft_strstr(const char *haystack, const char *needle)
 		return (1);
 	else
 		return (0);
+}
+
+static void	close_free_exit(int fd, t_screen *scrn, char *str)
+{
+	close(fd);
+	free_screen(scrn);
+	ft_errexit(str);
 }
 
 /* Check whether the map is a rectangle */
@@ -56,11 +63,7 @@ void	check_for_shape(int fd, t_screen *scrn)
 		line = get_next_line(fd);
 	}
 	if (err > 0)
-	{
-		close(fd);
-		free_screen(scrn);
-		ft_errexit("Map is not a rectangle.");
-	}
+		close_free_exit(fd, scrn, "Map is not a rectangle.");
 }
 
 void	get_map_dims(int fd, t_screen *scrn, int i)
@@ -70,11 +73,7 @@ void	get_map_dims(int fd, t_screen *scrn, int i)
 
 	line = get_next_line(fd);
 	if (!line)
-	{
-		close (fd);
-		free (scrn);
-		ft_errexit ("Empty map");
-	}
+		close_free_exit(fd, scrn, "Empty map");
 	arr = ft_splitbyspace(line);
 	while (arr[i])
 		i ++;

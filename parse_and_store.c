@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:11:13 by sde-silv          #+#    #+#             */
-/*   Updated: 2023/12/11 18:11:29 by sde-silv         ###   ########.fr       */
+/*   Updated: 2023/12/21 01:34:58 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,16 @@ void	store_3d_cords(t_screen *scrn, int fd, int i, int rows)
 		arr = ft_splitbyspace(line);
 		free (line);
 		cols = 0;
-		if (arr)
+		while (cols < scrn->x_max)
 		{
-			while (cols < scrn->x_max)
-			{
-				scrn->cord[i].y = rows;
-				scrn->cord[i].x = cols;
-				scrn->cord[i].z = ft_atoi(arr[cols]);
-				cols ++;
-				i ++;
-			}
-			free_arr(arr);
+			scrn->cord[i].y = rows;
+			scrn->cord[i].x = cols;
+			scrn->cord[i].z = ft_atoi(arr[cols]);
+			cols ++;
+			i ++;
 		}
+		if (arr)
+			free_arr(arr);
 		rows ++;
 	}
 }
